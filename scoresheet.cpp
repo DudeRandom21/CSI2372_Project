@@ -3,7 +3,7 @@
 
 void ScoreSheet::print(std::ostream out)
 {
-	out << "Player name: " << d_name << "\t" << Points << d_points << std::endl;
+	out << "Player name: " << d_name << "\t" << "Points" << d_points << std::endl;
 	out << "-------------------------------" << std::endl;
 	for (int i = 0; i < 10; ++i)
 	{
