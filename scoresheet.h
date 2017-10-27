@@ -7,7 +7,17 @@
 
 struct Dice
 {
-	
+	ScoreSheet::Color color;
+	int face;
+	int roll();
+	//** Overload insertion opperator
+		//Not sure if that should to be in the header?
+};
+
+struct RandomDice
+{
+	std::uniform_int_distribution die(1, 6);
+	//** I have no idea what goes in here.
 };
 
 class ScoreSheet
@@ -22,7 +32,7 @@ class ScoreSheet
 	int d_blue[10];
 
 public:
-	enum Color {RED, YELLOW, BLUE};
+	enum Color {RED, YELLOW, GREEN, BLUE, WHITE};
 
 	ScoreSheet(std::string _name);
 	~ScoreSheet();
