@@ -8,13 +8,6 @@
 #include "Dice.h"
 #include "Common.h"
 
-struct QwintoRow<Color>
-{
-	int d_row[10];
-	int &operator[](int index);
-	bool validate(int index, RollOfDice roll);
-};
-
 
 class QwintoScoreSheet : public ScoreSheet
 {
