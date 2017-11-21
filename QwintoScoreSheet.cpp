@@ -27,7 +27,7 @@ bool QwintoScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
 int QwintoScoreSheet::calcTotal()
 {
 	int current_score = 0;
-	current_score -= d_failed_throws * 5;
+	current_score -= d_failedThrows * 5;
 
 
 	//essentially this should be a loop over the three rows but I can't seem to figure how to loop over templates

@@ -11,7 +11,7 @@ class ScoreSheet
 {
 protected:
 	std::string d_name;
-	int d_failed_throws;
+	int d_failedThrows;
 	int d_points;
 	
 	virtual bool validate(RollOfDice _dice, Color _color, int _pos = -1) = 0;

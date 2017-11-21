@@ -1,7 +1,7 @@
 #include "Common.h"
 
 // Class Scoresheet
-ScoreSheet::ScoreSheet(std::string _name) : d_name(_name), d_failed_throws(0), d_points(0) {}
+ScoreSheet::ScoreSheet(std::string _name) : d_name(_name), d_failedThrows(0), d_points(0) {}
 
 ScoreSheet::~ScoreSheet() {}
 
