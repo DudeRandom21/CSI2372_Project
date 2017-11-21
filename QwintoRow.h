@@ -1,8 +1,6 @@
 #ifndef QWINTO_ROW
 #define QWINTO_ROW
 
-#include <iostream>
-
 #include "Dice.h"
 
 template <const Color d_c>
@@ -17,6 +15,7 @@ class QwintoRow
 	int d_row[10] = {0};
 
 public:
+	QwintoRow();
 	int &operator[](int index);
 	bool validate(int index, RollOfDice roll);
 
@@ -24,69 +23,20 @@ public:
 };
 
 
-template <>
-std::ostream& operator<<<Color::BLUE>(std::ostream& _out, QwintoRow<Color::BLUE> _row)
+//defining functions from QwintoRow template
+
+template<const Color d_c>
+QwintoRow<d_c>::QwintoRow()
 {
-	for (int i = 0; i < 10; ++i)
-	{
-		_out << (((i == 2) || (i == 3) || (i == 9)) ? '%' : '|');
-		if (i == 4)
-			_out << "XX";
-		else if (_row[i] == 0)
-			_out << "  ";
-		else if (_row[i] < 10)
-			_out << ' ' << _row[i];
-		else
-			_out << _row[i];
-	}
-	_out << '%' << std::endl;
-	return _out;
+	if(d_c == Color::RED)
+		d_row[3] = -1;
+	
+	else if(d_c == Color::YELLOW)
+		d_row[5] = -1;
+	
+	else if(d_c == Color::BLUE)
+		d_row[4] = -1;
 }
-
-
-template <>
-std::ostream& operator<<<Color::YELLOW>(std::ostream& _out, QwintoRow<Color::YELLOW> _row)
-{
-	for (int i = 0; i < 10; ++i)
-	{
-		_out << (((i == 7) || (i == 8)) ? '%' : '|');
-		if (i == 5)
-			_out << "XX";
-		else if (_row[i] == 0)
-			_out << "  ";
-		else if (_row[i] < 10)
-			_out << ' ' << _row[i];
-		else
-			_out << _row[i];
-	}
-	_out << '|' << std::endl;
-	return _out;
-}
-
-
-template <>
-std::ostream& operator<<<Color::RED>(std::ostream& _out, QwintoRow<Color::RED> _row)
-{
-	for (int i = 0; i < 10; ++i)
-	{
-		_out << (((i == 1) || (i == 2) || (i == 5) || (i == 6)) ? '%' : '|');
-		if (i == 3)
-			_out << "XX";
-		else if (_row[i] == 0)
-			_out << "  ";
-		else if (_row[i] < 10)
-			_out << ' ' << _row[i];
-		else
-			_out << _row[i];
-	}
-	_out << '|' << std::endl;
-	return _out;
-}
-
-
-
-
-
 
 template <const Color d_c>
 int& QwintoRow<d_c>::operator[](int index)
@@ -111,20 +61,87 @@ bool QwintoRow<d_c>::validate(int index, RollOfDice roll)
 		return false;
 
 	//checking if a lower index has a higer value
-	int i = index;
-	for(; d_row[i] == 0; --i);
+	int i;
+	for(i = index; i>-1 && d_row[i] <= 0; --i);
 
-	if (d_row[i] >= roll)
+	if (i>-1 && d_row[i] >= roll){
+		std::cerr << "lower" << std::endl;
 		return false;
+	}
 
 	//checking if a higer index has a lower value
-	i = index;
-	for(; d_row[i] == 0; ++i);
+	for(i = index; i<10 && d_row[i] <= 0; ++i);
 
-	if (d_row[i] <= roll)
+	if (i<10 && d_row[i] <= roll)
 		return false;
 
 	return true;
 }
+
+
+inline void printNumber(std::ostream& _out, int _value); //Not sure if this should be virtutal or not
+
+
+//specializations of the insertion operator for template QwintoRow
+
+template <>
+std::ostream& operator<<<Color::RED>(std::ostream& _out, QwintoRow<Color::RED> _row)
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		_out << (((i == 1) || (i == 2) || (i == 5) || (i == 6)) ? '%' : '|'); //this line decides which seperator to place
+		printNumber(_out, _row[i]);
+	}
+	_out << '|' << std::endl;
+	return _out;
+}
+
+
+
+template <>
+std::ostream& operator<<<Color::YELLOW>(std::ostream& _out, QwintoRow<Color::YELLOW> _row)
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		_out << (((i == 7) || (i == 8)) ? '%' : '|'); //this line decides which seperator to place
+		if (i == 5)
+			_out << "XX";
+		else if (_row[i] == 0)
+			_out << "  ";
+		else if (_row[i] < 10)
+			_out << ' ' << _row[i];
+		else
+			_out << _row[i];
+	}
+	_out << '|' << std::endl;
+	return _out;
+}
+
+
+template <>
+std::ostream& operator<<<Color::BLUE>(std::ostream& _out, QwintoRow<Color::BLUE> _row)
+{
+	for (int i = 0; i < 10; ++i)
+	{
+		_out << (((i == 2) || (i == 3) || (i == 9)) ? '%' : '|'); //this line decides which seperator to place
+		printNumber(_out, _row[i]);
+	}
+	_out << '%' << std::endl;
+	return _out;
+}
+
+
+inline void printNumber(std::ostream& _out, int _value) //Not sure if this should be virtutal or not
+{
+	if (_value == -1)
+		_out << "XX";
+	else if (_value == 0)
+		_out << "  ";
+	else if (_value < 10)
+		_out << ' ' << _value;
+	else
+		_out << _value;	
+}
+
 
 #endif
