@@ -1,6 +1,8 @@
 #ifndef QWINTO_ROW
 #define QWINTO_ROW
 
+#include <iomanip>
+
 #include "Dice.h"
 
 template <const Color d_c>
@@ -30,10 +32,10 @@ QwintoRow<d_c>::QwintoRow()
 {
 	if(d_c == Color::RED)
 		d_row[3] = -1;
-	
+
 	else if(d_c == Color::YELLOW)
 		d_row[5] = -1;
-	
+
 	else if(d_c == Color::BLUE)
 		d_row[4] = -1;
 }
@@ -104,14 +106,7 @@ std::ostream& operator<<<Color::YELLOW>(std::ostream& _out, QwintoRow<Color::YEL
 	for (int i = 0; i < 10; ++i)
 	{
 		_out << (((i == 7) || (i == 8)) ? '%' : '|'); //this line decides which seperator to place
-		if (i == 5)
-			_out << "XX";
-		else if (_row[i] == 0)
-			_out << "  ";
-		else if (_row[i] < 10)
-			_out << ' ' << _row[i];
-		else
-			_out << _row[i];
+		printNumber(_out, _row[i]);
 	}
 	_out << '|' << std::endl;
 	return _out;
@@ -131,16 +126,14 @@ std::ostream& operator<<<Color::BLUE>(std::ostream& _out, QwintoRow<Color::BLUE>
 }
 
 
-inline void printNumber(std::ostream& _out, int _value) //Not sure if this should be virtutal or not
+inline void printNumber(std::ostream& _out, int _value) //Not sure if this should be inline or not
 {
 	if (_value == -1)
 		_out << "XX";
 	else if (_value == 0)
 		_out << "  ";
-	else if (_value < 10)
-		_out << ' ' << _value;
 	else
-		_out << _value;	
+		_out << std::setw(2) << _value;	
 }
 
 
