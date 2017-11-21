@@ -5,11 +5,15 @@
 
 #include "Dice.h"
 
+//template prototypes
 template <const Color d_c>
 class QwintoRow;
 
 template <const Color d_c>
 std::ostream& operator<<(std::ostream& _out, QwintoRow<d_c> _row);
+
+
+
 
 template <const Color d_c>
 class QwintoRow
@@ -18,8 +22,8 @@ class QwintoRow
 
 public:
 	QwintoRow();
-	int &operator[](int index);
-	bool validate(int index, RollOfDice roll);
+	int &operator[](int _index);
+	bool validate(int _index, RollOfDice roll);
 
 	friend std::ostream& operator<<<d_c>(std::ostream& _out, QwintoRow<d_c> _row);
 };
@@ -41,20 +45,24 @@ QwintoRow<d_c>::QwintoRow()
 }
 
 template <const Color d_c>
-int& QwintoRow<d_c>::operator[](int index)
+int& QwintoRow<d_c>::operator[](int _index)
 {
-	return d_row[index];
+	return d_row[_index];
 }
 
 template <const Color d_c>
-bool QwintoRow<d_c>::validate(int index, RollOfDice roll)
+bool QwintoRow<d_c>::validate(int _index, RollOfDice _roll)
 {
-	if(d_row[index] != 0)
+
+	if (_index < 0 || _index > 9)
 		return false;
 
-	//checking if the roll has a dice of the selected color
+	if(d_row[_index] != 0)
+		return false;
+
+	//checking if _roll has a dice of the selected color
 	bool found = false;
-	for(auto die : roll)
+	for(auto die : _roll)
 	{
 		if (die.d_color == d_c)
 			found = true;
@@ -64,17 +72,17 @@ bool QwintoRow<d_c>::validate(int index, RollOfDice roll)
 
 	//checking if a lower index has a higer value
 	int i;
-	for(i = index; i>-1 && d_row[i] <= 0; --i);
+	for(i = _index; i>-1 && d_row[i] <= 0; --i);
 
-	if (i>-1 && d_row[i] >= roll){
+	if (i>-1 && d_row[i] >= _roll){
 		std::cerr << "lower" << std::endl;
 		return false;
 	}
 
 	//checking if a higer index has a lower value
-	for(i = index; i<10 && d_row[i] <= 0; ++i);
+	for(i = _index; i<10 && d_row[i] <= 0; ++i);
 
-	if (i<10 && d_row[i] <= roll)
+	if (i<10 && d_row[i] <= _roll)
 		return false;
 
 	return true;

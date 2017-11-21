@@ -9,12 +9,12 @@
 
 class ScoreSheet
 {
+protected:
 	std::string d_name;
-	int d_failedThrows;
+	int d_failed_throws;
 	int d_points;
 	
-protected:
-	virtual bool validate() = 0;
+	virtual bool validate(RollOfDice _dice, Color _color, int _pos = -1) = 0;
 	virtual int calcTotal() = 0;
 
 public:
@@ -24,7 +24,7 @@ public:
 	bool score(RollOfDice _dice, Color _color, int _pos = -1);
 	int setTotal();
 	virtual bool operator!();
-	virtual friend std::ostream& operator<<(std::ostream& _out, ScoreSheet* _sS); // TODO shore up how the polymophism works for the << operator
+	// virtual friend std::ostream& operator<<(std::ostream& _out, ScoreSheet* _sS); // TODO shore up how the polymophism works for the << operator
 };
 
 

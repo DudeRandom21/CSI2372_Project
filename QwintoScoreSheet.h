@@ -3,19 +3,23 @@
 
 #include "Dice.h"
 #include "Common.h"
+#include "QwintoRow.h"
 
 
 class QwintoScoreSheet : public ScoreSheet
 {
-	QwintoRow<Color::RED> d_red;
-	QwintoRow<Color::YELLOW> d_yellow;
-	QwintoRow<Color::BLUE> d_blue;
+	QwintoRow<Color::RED> d_rowR;
+	QwintoRow<Color::YELLOW> d_rowY;
+	QwintoRow<Color::BLUE> d_rowB;
 
 public:
-	QwintoScoreSheet();
+	QwintoScoreSheet(std::string _name);
 	~QwintoScoreSheet();
+	virtual bool validate(RollOfDice _dice, Color _color, int _pos = -1);
+	virtual int calcTotal();
+
 	friend std::ostream& operator<<(std::ostream& _out, QwintoScoreSheet _sS);
-}
+};
 
 
 #endif
