@@ -14,6 +14,8 @@ int ScoreSheet::setTotal(){
     return d_points;
 }
 
+bool ScoreSheet::operator!() {}
+
 // Class Player
 Player::Player() : d_active(true) {}
 Player::~Player() {}
