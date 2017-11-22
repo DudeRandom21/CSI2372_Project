@@ -26,7 +26,7 @@ int QwintoScoreSheet::calcTotal()
 
 
 	//essentially this should be a loop over the three rows but I can't seem to figure how to loop over templates
-	int filled_cells;
+	int filled_cells = 0;
 	for (int i = 0; i < 10; ++i)
 	{
 		if (d_rowR[i] > 0)
@@ -55,7 +55,28 @@ int QwintoScoreSheet::calcTotal()
 
 bool QwintoScoreSheet::operator!()
 {
+	//checking for failed throws
+	if (ScoreSheet::operator!())
+		return true;
 
+	int filled_rows = 0;
+
+	//same as above this should loop over all the rows
+	int filled_cells = 0;
+	for (int i = 0; i < 10; ++i)
+	{
+		if (d_rowR[i] > 0)
+			++filled_cells;
+	}
+	if (filled_cells == 9)
+		++filled_rows;
+	//up to here
+
+	if (filled_rows >= 2)
+		return true;
+
+	//if nothing no condition is met the game is not over
+	return false;
 }
 
 std::ostream& operator<<(std::ostream& _out, QwintoScoreSheet _sS)

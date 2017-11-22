@@ -14,7 +14,12 @@ int ScoreSheet::setTotal(){
     return d_points;
 }
 
-bool ScoreSheet::operator!() {}
+bool ScoreSheet::operator!()
+{
+	if(d_failedThrows >= 4)
+		return true;
+	return false;
+}
 
 // Class Player
 Player::Player() : d_active(true) {}
