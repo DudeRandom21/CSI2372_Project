@@ -1,12 +1,7 @@
 #include "QwintoScoreSheet.h"
 
-// QwintoScoreSheet::QwintoScoreSheet(std::string _name)
-// {
-// 	QwintoRow<Color::RED> rowR;
-// 	QwintoRow<Color::YELLOW> rowY;
-// 	QwintoRow<Color::BLUE> rowB;
+QwintoScoreSheet::QwintoScoreSheet(std::string _name) : ScoreSheet(_name) {}
 
-// }
 
 bool QwintoScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
 {
@@ -31,16 +26,16 @@ int QwintoScoreSheet::calcTotal()
 
 
 	//essentially this should be a loop over the three rows but I can't seem to figure how to loop over templates
-	int filed_cells;
+	int filled_cells;
 	for (int i = 0; i < 10; ++i)
 	{
 		if (d_rowR[i] > 0)
-			++filed_cells;
+			++filled_cells;
 	}
-	if (filed_cells == 9)
+	if (filled_cells == 9)
 		current_score += d_rowR[9];
 	else
-		current_score += filed_cells;
+		current_score += filled_cells;
 	//up to here
 
 
@@ -56,4 +51,27 @@ int QwintoScoreSheet::calcTotal()
 				current_score += d_rowY[i+1];
 		}
 	}
+}
+
+bool QwintoScoreSheet::operator!()
+{
+
+}
+
+std::ostream& operator<<(std::ostream& _out, QwintoScoreSheet _sS)
+{
+	_out << "Player name: " << _sS.d_name << "\t\t   Points: " << _sS.d_points << std::endl;
+	_out << "              -------------------------------" << std::endl;
+	_out << _sS.d_rowR;
+	_out << "           ----------------------------------" << std::endl;
+	_out << _sS.d_rowY;
+	_out << "        ----------------------------------" << std::endl;
+	_out << _sS.d_rowB;
+	_out << "        -------------------------------" << std::endl;
+	_out << "Failed throws: ";
+	for (int i = 1; i <= _sS.d_failedThrows; ++i)
+	{
+		_out << i << ' ';
+	}
+	_out << std::endl;
 }
