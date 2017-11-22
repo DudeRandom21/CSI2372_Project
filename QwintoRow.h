@@ -3,33 +3,33 @@
 
 #include <iomanip>
 
+#include "Row.h"
 #include "Dice.h"
 
 //template prototypes
-template <const Color d_c>
-class QwintoRow;
+// template <const Color d_c>
+// class QwintoRow;
+
+// template <const Color d_c>
+// std::ostream& operator<<(std::ostream& _out, QwintoRow<d_c> _row);
+
+
+
 
 template <const Color d_c>
-std::ostream& operator<<(std::ostream& _out, QwintoRow<d_c> _row);
-
-
-
-
-template <const Color d_c>
-class QwintoRow
+class QwintoRow : public Row
 {
-	int d_row[10] = {0};
-
 	//this doesn't really go in the class but I feel like it's not really global either so not sure where to put it
 	inline static void printNumber(std::ostream& _out, int _value); //Not sure if this should be inline or not
 
+protected:
+	virtual void print(std::ostream& _out);
 
 public:
 	QwintoRow();
-	int &operator[](int _index);
-	bool validate(int _index, RollOfDice roll);
+	virtual bool validate(int _index, RollOfDice roll);
 
-	friend std::ostream& operator<<<d_c>(std::ostream& _out, QwintoRow<d_c> _row);
+	// friend std::ostream& operator<<<d_c>(std::ostream& _out, QwintoRow<d_c> _row);
 };
 
 
@@ -46,12 +46,6 @@ QwintoRow<d_c>::QwintoRow()
 
 	else if(d_c == Color::BLUE)
 		d_row[4] = -1;
-}
-
-template <const Color d_c>
-int& QwintoRow<d_c>::operator[](int _index)
-{
-	return d_row[_index];
 }
 
 template <const Color d_c>
