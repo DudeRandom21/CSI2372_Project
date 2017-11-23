@@ -8,9 +8,7 @@
 
 class QwintoScoreSheet : public ScoreSheet
 {
-	QwintoRow<Color::RED> d_rowR;
-	QwintoRow<Color::YELLOW> d_rowY;
-	QwintoRow<Color::BLUE> d_rowB;
+
 
 public:
 	QwintoScoreSheet(std::string _name);
@@ -19,7 +17,7 @@ public:
 	virtual bool operator!();
 
 
-	friend std::ostream& operator<<(std::ostream& _out, QwintoScoreSheet _sS);
+	friend std::ostream& operator<<(std::ostream& _out, QwintoScoreSheet& _sS);
 };
 
 

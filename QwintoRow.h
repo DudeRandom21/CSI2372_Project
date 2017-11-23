@@ -6,15 +6,6 @@
 #include "Row.h"
 #include "Dice.h"
 
-//template prototypes
-// template <const Color d_c>
-// class QwintoRow;
-
-// template <const Color d_c>
-// std::ostream& operator<<(std::ostream& _out, QwintoRow<d_c> _row);
-
-
-
 
 template <const Color d_c>
 class QwintoRow : public Row
