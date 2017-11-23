@@ -9,6 +9,7 @@
 class QwintoScoreSheet : public ScoreSheet
 {
 
+~QwintoScoreSheet()
 
 public:
 	QwintoScoreSheet(std::string _name);

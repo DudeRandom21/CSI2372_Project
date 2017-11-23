@@ -23,7 +23,7 @@ protected:
 public:
 
 	ScoreSheet(std::string _name);
-	~ScoreSheet();
+	virtual ~ScoreSheet() = default;
 	bool score(RollOfDice _dice, Color _color, int _pos = -1);
 	int setTotal();
 	virtual bool operator!();

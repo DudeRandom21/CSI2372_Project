@@ -86,3 +86,11 @@ bool QwintoScoreSheet::operator!()
 	//if no condition is met the game is not over
 	return false;
 }
+
+QwintoScoreSheet::~QwintoScoreSheet()
+{
+	for(auto& row : d_row)
+	{
+		delete row;
+	}
+}
