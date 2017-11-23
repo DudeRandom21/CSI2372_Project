@@ -14,7 +14,7 @@ class QwintoRow : public Row
 	inline static void printNumber(std::ostream& _out, int _value); //Not sure if this should be inline or not
 
 protected:
-	virtual void print(std::ostream& _out);
+	virtual void print(std::ostream& _out) const;
 
 public:
 	QwintoRow();

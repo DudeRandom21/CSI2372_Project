@@ -15,7 +15,7 @@ inline void QwintoRow<d_c>::printNumber(std::ostream& _out, int _value)
 //specializations of the insertion operator for template QwintoRow
 
 template <>
-void QwintoRow<Color::RED>::print(std::ostream& _out)
+void QwintoRow<Color::RED>::print(std::ostream& _out) const
 {
 	_out << "Red           ";
 	for (int i = 0; i < 10; ++i)
@@ -29,7 +29,7 @@ void QwintoRow<Color::RED>::print(std::ostream& _out)
 
 
 template <>
-void QwintoRow<Color::YELLOW>::print(std::ostream& _out)
+void QwintoRow<Color::YELLOW>::print(std::ostream& _out) const
 {
 	_out << "Yellow     ";
 	for (int i = 0; i < 10; ++i)
@@ -42,7 +42,7 @@ void QwintoRow<Color::YELLOW>::print(std::ostream& _out)
 
 
 template <>
-void QwintoRow<Color::BLUE>::print(std::ostream& _out)
+void QwintoRow<Color::BLUE>::print(std::ostream& _out) const
 {
 	_out << "Blue    ";
 	for (int i = 0; i < 10; ++i)

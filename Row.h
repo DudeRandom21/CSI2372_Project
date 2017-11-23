@@ -9,7 +9,7 @@ class Row
 {
 
 protected:
-	virtual void print(std::ostream& _out) = 0;
+	virtual void print(std::ostream& _out) const = 0;
 	int d_row[10] = {0};
 
 public:
