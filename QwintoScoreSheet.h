@@ -15,9 +15,6 @@ public:
 	virtual bool validate(RollOfDice _dice, Color _color, int _pos = -1);
 	virtual int calcTotal();
 	virtual bool operator!();
-
-
-	friend std::ostream& operator<<(std::ostream& _out, const QwintoScoreSheet& _sS);
 };
 
 

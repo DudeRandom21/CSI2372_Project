@@ -4,9 +4,9 @@ QwintoScoreSheet::QwintoScoreSheet(std::string _name) : ScoreSheet(_name)
 {
 	d_row.reserve(3);
 
-	d_row[0] = new QwintoRow<Color::RED>();
-	d_row[1] = new QwintoRow<Color::YELLOW>();
-	d_row[2] = new QwintoRow<Color::BLUE>();
+	d_row.push_back( new QwintoRow<Color::RED>() );
+	d_row.push_back( new QwintoRow<Color::YELLOW>() );
+	d_row.push_back( new QwintoRow<Color::BLUE>() );
 }
 
 
@@ -85,22 +85,4 @@ bool QwintoScoreSheet::operator!()
 
 	//if no condition is met the game is not over
 	return false;
-}
-
-std::ostream& operator<<(std::ostream& _out, const QwintoScoreSheet& _sS)
-{
-	_out << "Player name: " << _sS.d_name << "\t\t   Points: " << _sS.d_points << std::endl;
-	_out << "              -------------------------------" << std::endl;
-	_out << *_sS.d_row[0];
-	_out << "           ----------------------------------" << std::endl;
-	_out << *_sS.d_row[1];
-	_out << "        ----------------------------------" << std::endl;
-	_out << *_sS.d_row[2];
-	_out << "        -------------------------------" << std::endl;
-	_out << "Failed throws: ";
-	for (int i = 1; i <= _sS.d_failedThrows; ++i)
-	{
-		_out << i << ' ';
-	}
-	_out << std::endl;
 }

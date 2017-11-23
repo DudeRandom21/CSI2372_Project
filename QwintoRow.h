@@ -19,8 +19,6 @@ protected:
 public:
 	QwintoRow();
 	virtual bool validate(int _index, RollOfDice roll);
-
-	// friend std::ostream& operator<<<d_c>(std::ostream& _out, QwintoRow<d_c> _row);
 };
 
 

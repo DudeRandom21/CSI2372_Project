@@ -27,7 +27,8 @@ public:
 	bool score(RollOfDice _dice, Color _color, int _pos = -1);
 	int setTotal();
 	virtual bool operator!();
-	// virtual friend std::ostream& operator<<(std::ostream& _out, ScoreSheet* _sS); // TODO shore up how the polymophism works for the << operator
+	
+	friend std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS);
 };
 
 
