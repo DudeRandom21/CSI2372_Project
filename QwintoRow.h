@@ -61,10 +61,8 @@ bool QwintoRow<d_c>::validate(int _index, RollOfDice _roll)
 	int i;
 	for(i = _index; i>-1 && d_row[i] <= 0; --i);
 
-	if (i>-1 && d_row[i] >= _roll){
-		std::cerr << "lower" << std::endl;
+	if (i>-1 && d_row[i] >= _roll)
 		return false;
-	}
 
 	//checking if a higer index has a lower value
 	for(i = _index; i<10 && d_row[i] <= 0; ++i);

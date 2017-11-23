@@ -9,13 +9,16 @@
 class QwintoScoreSheet : public ScoreSheet
 {
 
-~QwintoScoreSheet()
+protected:
+	virtual bool validate(RollOfDice _dice, Color _color, int _pos = -1);
+	virtual int calcTotal();
+	virtual Row& operator[](Color _color);
 
 public:
 	QwintoScoreSheet(std::string _name);
-	virtual bool validate(RollOfDice _dice, Color _color, int _pos = -1);
-	virtual int calcTotal();
+	~QwintoScoreSheet();
 	virtual bool operator!();
+
 };
 
 

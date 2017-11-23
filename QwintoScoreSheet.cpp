@@ -9,6 +9,13 @@ QwintoScoreSheet::QwintoScoreSheet(std::string _name) : ScoreSheet(_name)
 	d_row.push_back( new QwintoRow<Color::BLUE>() );
 }
 
+QwintoScoreSheet::~QwintoScoreSheet()
+{
+	for(auto& row : d_row)
+	{
+		delete row;
+	}
+}
 
 bool QwintoScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
 {
@@ -87,10 +94,17 @@ bool QwintoScoreSheet::operator!()
 	return false;
 }
 
-QwintoScoreSheet::~QwintoScoreSheet()
+Row& QwintoScoreSheet::operator[](Color _color)
 {
-	for(auto& row : d_row)
+	switch(_color)
 	{
-		delete row;
+		case Color::RED :
+			return *d_row[0];
+
+		case Color::YELLOW :
+			return *d_row[1];
+
+		case Color::BLUE :
+			return *d_row[2];
 	}
 }

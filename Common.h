@@ -19,6 +19,7 @@ protected:
 	
 	virtual bool validate(RollOfDice _dice, Color _color, int _pos = -1) = 0;
 	virtual int calcTotal() = 0;
+	virtual Row& operator[](Color _color) = 0;
 
 public:
 

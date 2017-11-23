@@ -1,7 +1,9 @@
+#include <ctime>
+
 #include "Dice.h"
 
 std::uniform_int_distribution<int> RandomDice::die{1,6};
-std::default_random_engine RandomDice::generator{};
+std::default_random_engine RandomDice::generator{time(NULL)};
 
 Dice::Dice(Color _color) : d_color(_color)
 {
@@ -19,13 +21,13 @@ std::ostream& operator<<(std::ostream& _out, const Dice& _dice)
 	return _out;
 }
 
-void RollOfDice::roll()
+RollOfDice RollOfDice::roll()
 {
 	for(auto &die : *this)
 	{
 		die.roll();
 	}
-
+	return *this;
 }
 
 //revise if inheritance is not permited

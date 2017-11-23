@@ -24,7 +24,7 @@ struct Dice
 
 struct RollOfDice : public std::vector<Dice>
 {
-	void roll();
+	RollOfDice roll();
 	RollOfDice pair(int _index1, int _index2);
 	operator int();
 	friend std::ostream& operator<<(std::ostream& _out, const RollOfDice& _roll);
