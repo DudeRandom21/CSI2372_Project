@@ -83,11 +83,11 @@ bool QwintoScoreSheet::operator!()
 	if (filled_rows >= 2)
 		return true;
 
-	//if nothing no condition is met the game is not over
+	//if no condition is met the game is not over
 	return false;
 }
 
-std::ostream& operator<<(std::ostream& _out, QwintoScoreSheet& _sS)
+std::ostream& operator<<(std::ostream& _out, const QwintoScoreSheet& _sS)
 {
 	_out << "Player name: " << _sS.d_name << "\t\t   Points: " << _sS.d_points << std::endl;
 	_out << "              -------------------------------" << std::endl;

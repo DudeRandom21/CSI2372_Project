@@ -17,7 +17,7 @@ public:
 	virtual bool operator!();
 
 
-	friend std::ostream& operator<<(std::ostream& _out, QwintoScoreSheet& _sS);
+	friend std::ostream& operator<<(std::ostream& _out, const QwintoScoreSheet& _sS);
 };
 
 

@@ -19,7 +19,7 @@ struct Dice
 	const Color d_color;
 	int d_face;
 	int roll();
-	friend std::ostream& operator<<(std::ostream& _out, const Dice _dice);
+	friend std::ostream& operator<<(std::ostream& _out, const Dice& _dice);
 };
 
 struct RollOfDice : public std::vector<Dice>
@@ -27,7 +27,7 @@ struct RollOfDice : public std::vector<Dice>
 	void roll();
 	RollOfDice pair(int _index1, int _index2);
 	operator int();
-	friend std::ostream& operator<<(std::ostream& _out, const RollOfDice _roll);
+	friend std::ostream& operator<<(std::ostream& _out, const RollOfDice& _roll);
 };
 
 #endif

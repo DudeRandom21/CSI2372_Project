@@ -13,7 +13,7 @@ int Dice::roll()
 	return d_face = RandomDice::die(RandomDice::generator);
 }
 
-std::ostream& operator<<(std::ostream& _out, const Dice _dice)
+std::ostream& operator<<(std::ostream& _out, const Dice& _dice)
 {
 	_out << _dice.d_face;
 	return _out;
@@ -46,7 +46,7 @@ RollOfDice::operator int()
 	return total;
 }
 
-std::ostream& operator<<(std::ostream& _out, const RollOfDice _roll)
+std::ostream& operator<<(std::ostream& _out, const RollOfDice& _roll)
 {
 	_out << "Roll: ";
 	for(auto die : _roll)

@@ -18,7 +18,7 @@ public:
 	int &operator[](int _index);
 	virtual bool validate(int _index, RollOfDice roll) = 0;
 
-	friend std::ostream& operator<<(std::ostream& _out, Row& _row);
+	friend std::ostream& operator<<(std::ostream& _out, const Row& _row);
 };
 
 
