@@ -15,15 +15,10 @@ struct QwixxRow<class ,Color>
 
 class QwixxScoreSheet : public ScoreSheet
 {
-	QwixxRow<std::vector, Color> d_color1;	//identifiers should be changed to the color names instead of "colorX"
-	QwixxRow<std::vector, Color> d_color2;
-	QwixxRow<std::list, Color> d_color3;
-	QwixxRow<std::list, Color> d_color4;
 
 public:
 	QwixxScoreSheet();
 	~QwixxScoreSheet();
-	friend std::ostream& operator<<(std::ostream& _out, QwixxScoreSheet _sS);
 };
 
 
