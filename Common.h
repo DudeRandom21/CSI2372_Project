@@ -6,25 +6,30 @@
 #include <vector>
 
 #include "Dice.h"
+#include "Row.h"
 
 class ScoreSheet
 {
+protected:
 	std::string d_name;
 	int d_failedThrows;
 	int d_points;
+
+	std::vector<Row*> d_row;
 	
-protected:
-	virtual bool validate() = 0;
+	virtual bool validate(RollOfDice _dice, Color _color, int _pos = -1) = 0;
 	virtual int calcTotal() = 0;
+	virtual Row& operator[](Color _color) = 0;
 
 public:
 
 	ScoreSheet(std::string _name);
-	~ScoreSheet();
+	virtual ~ScoreSheet() = default;
 	bool score(RollOfDice _dice, Color _color, int _pos = -1);
 	int setTotal();
 	virtual bool operator!();
-	virtual friend std::ostream& operator<<(std::ostream& _out, ScoreSheet* _sS); // TODO shore up how the polymophism works for the << operator
+	
+	friend std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS);
 };
 
 
