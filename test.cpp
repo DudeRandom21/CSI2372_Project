@@ -1,8 +1,8 @@
 #include <iostream>
 
 #include "Dice.h"
-#include "QwintoRow.h"
-#include "QwintoScoreSheet.h"
+#include "QwixxRow.h"
+#include "QwixxScoreSheet.h"
 
 	RollOfDice rd1;
 
@@ -43,7 +43,11 @@ int main(int argc, char const *argv[])
 	rd.push_back(Dice(Color::YELLOW));
 	rd.push_back(Dice(Color::BLUE));
 
+
 	QwintoScoreSheet ss1{"Jane Doe"};
+
+//	QwixxScoreSheet ss1{"Jane Doe"};
+
 
 	for (int i = 0; i < 100; ++i)
 	{

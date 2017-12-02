@@ -1,0 +1,145 @@
+#include "QwixxScoreSheet.h"
+
+QwixxScoreSheet::QwixxScoreSheet(std::string _name) : ScoreSheet(_name)
+{
+	d_row.reserve(4);
+
+	d_row.push_back( new QwixxRow<std::vector<int>,	Color::RED>() );
+	d_row.push_back( new QwixxRow<std::vector<int>,	Color::YELLOW>() );
+	d_row.push_back( new QwixxRow<std::list<int>,	Color::GREEN>() );
+	d_row.push_back( new QwixxRow<std::list<int>,	Color::BLUE>() );
+}
+
+QwixxScoreSheet::~QwixxScoreSheet()
+{
+	for(auto& row : d_row)
+	{
+		delete row;
+	}
+}
+
+bool QwixxScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
+{
+	if (_color != Color::RED && _color != Color::YELLOW && _color != Color::GREEN && _color != Color::BLUE) {
+		return false;
+	}
+	else {
+		switch (_color)
+		{
+		case Color::RED:
+			return d_row[0]->validate(_pos, _dice);
+
+		case Color::YELLOW:
+			return d_row[1]->validate(_pos, _dice);
+
+		case Color::GREEN:
+			return d_row[2]->validate(_pos, _dice);
+
+		case Color::BLUE:
+			return d_row[3]->validate(_pos, _dice);
+		default:
+			return false;
+		}
+	}
+}
+
+int QwixxScoreSheet::calcTotal()
+{
+	int current_score = 0;
+	current_score -= d_failedThrows * 5;
+
+	for (int i = 0; i < 4; ++i){
+		int filled_cells = 0;
+		for (int j = 0; j < 11; ++j){
+			if((*d_row[i])[j] > 0){
+				++filled_cells;
+			}
+		}
+
+		switch(filled_cells){
+			case (1):	current_score += 1; 
+			case (2):	current_score += 3; 
+			case (3):	current_score += 6; 
+			case (4):	current_score += 10; 
+			case (5):	current_score += 15; 
+			case (6):	current_score += 21; 
+			case (7):	current_score += 28; 
+			case (8):	current_score += 36; 
+			case (9):	current_score += 45; 
+			case (10):	current_score += 55; 
+			case (11):	current_score += 66;
+			case (12):	current_score += 78;
+			default:	current_score += 0;
+		}
+	}
+	return current_score;
+}
+
+bool QwixxScoreSheet::operator!()
+{
+	//checking for common fail conditions (failed throws)
+	if (ScoreSheet::operator!())
+		return true;
+
+	int filled_rows = 0;
+
+	for (int i = 0; i < 3; ++i)
+	{
+		int filled_cells = 0;
+		for (int j = 0; j < 11; ++j)
+		{
+			if ((*d_row[i])[j] > 0)
+				++filled_cells;
+		}
+		if (filled_cells == 6)
+			++filled_rows;
+	}
+
+	if (filled_rows >= 2)
+		return true;
+
+	//if no condition is met the game is not over
+	return false;
+}
+
+Row& QwixxScoreSheet::operator[](Color _color)
+{
+	switch(_color)
+	{
+		case Color::RED :
+			return *d_row[0];
+
+		case Color::YELLOW :
+			return *d_row[1];
+
+		case Color::GREEN :
+			return *d_row[2];
+
+		case Color::BLUE :
+			return *d_row[3];
+		default:
+			return *d_row[0];
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
