@@ -4,7 +4,9 @@
 #include <iostream>
 #include <string>
 
+#include "QwixxScoreSheet.h"
 #include "Common.h"
+
 
 class QwixxPlayer : public Player
 {
@@ -13,9 +15,8 @@ class QwixxPlayer : public Player
 	
 	QwixxScoreSheet d_sS;
 public:
-	QwixxPlayer() : stage( false );
+	QwixxPlayer() : stage(0) {}
 	~QwixxPlayer();	
 };
-
 
 #endif

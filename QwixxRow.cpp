@@ -1,7 +1,7 @@
 #include "QwixxRow.h"
 
-template<const Color d_c>
-inline void QwixxRow<d_c>::printNumber(std::ostream& _out, int _value)
+template<class rowType, const Color d_c>
+inline void QwixxRow<rowType, d_c>::printNumber(std::ostream& _out, int _value)
 {
 	if (_value == 0)
 		out << "  ";

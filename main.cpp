@@ -1,77 +1,87 @@
 #include <iostream>
+#include <string>
+#include <sstream>
+#include <vector>
+
+#include "Qwinto.h"
+#include "QwintoRow.h"
+#include "QwintoScoreSheet.h"
 
 #include "Dice.h"
+
+#include "Qwixx.h"
 #include "QwixxRow.h"
 #include "QwixxScoreSheet.h"
 
-RollOfDice rd1;
-
-RollOfDice rd2;
-
-Color randomColor();
-
 int main(int argc, char const *argv[])
 {
-	rd1.push_back(Dice(Color::RED));
-	rd1.push_back(Dice(Color::YELLOW));
+	std::cout << "Welcome to Qwinto/Qwixx" << std::endl;
 
-	rd2.push_back(Dice(Color::RED));
-	rd2.push_back(Dice(Color::YELLOW));
+	std::cout << "Please select game version" << std::endl;
+	std::cout << "Qwinto (1), Qwixx(2)" << std::endl;
+	int gameVers = 0;
+	std::cin >> gameVers;
 
-	// QwintoRow<Color::RED> rowR;
-	// QwintoRow<Color::YELLOW> rowY;
-	// QwintoRow<Color::BLUE> rowB;
+	int playerNum = 0;
+	std::cout << "How many players?" << std::endl;
+	std::cin >> playerNum;
 
-	// rowR[0] = 5;
-	// rowY[8] = 12;
-	// rowB[6] = 8;
-
-
-	// if(rowR.validate(5, rd))
-	// 	rowR[5] = rd;
-
-	// if(rowY.validate(2, rd))
-	// 	rowY[2] = rd;
-
-	// std::cout << rowR << std::endl;
-	// std::cout << rowY << std::endl;
-	// std::cout << rowB << std::endl;
+	std::vector<std::string> playerNames;
+	std::string name;
 
 
-	RollOfDice rd;
-	rd.push_back(Dice(Color::RED));
-	rd.push_back(Dice(Color::YELLOW));
-	rd.push_back(Dice(Color::BLUE));
-
-	QwixxScoreSheet ss1{ "Jane Doe" };
-
-	for (int i = 0; i < 100; ++i)
-	{
-		rd.roll();
-		ss1.score(rd, randomColor(), rd1.roll() % 10);
+	for (int i = 0; i < playerNum; i++) {
+		std::cout << "Player " << i + 1 << " Name: " << std::flush;
+		std::cin >> name;
+		playerNames.push_back(name);
 	}
 
-	std::cout << ss1;
-
-	std::cout << !ss1 << std::endl;
 
 
+	// Qwinto Game
+	if (gameVers == 0) {
+		for (auto vObj : playerNames) {
+			QwintoPlayer player(vObj);
+		}
 
+		while () { // TODO End condition?
 
-
-
-	return 0;
-}
-
-Color randomColor()
-{
-	switch (rd1.roll() % 3)
-	{
-	case 0:
-		return Color::RED;
-	case 1:
-		return Color::YELLOW;
-	case 2:
-		return Color::BLUE;
+		}
 	}
+
+	// Qwixxo Game
+	else if (gameVers == 1) {
+		for (auto vObj : playerNames) {
+			QwixxPlayer player(vObj);
+		}
+
+		while () { // TODO End condition?
+
+		}
+	}
+
+	
+
+
+
+		/*
+		Ask player to choose game version, number of players and names of players.
+			Create the corresponding players and RollOfDice for the game.
+			while end condition is not reached
+				next player takes a turn i.e., becomes active
+				get input from active player before roll
+				roll dice and show result
+				print scoresheet of active player
+				get input from active player after roll
+				score dice according to input from active player
+				loop over all non - active players
+				print scoresheet of non - active player
+				get input from non - active player
+				score dice according to input
+				loop over all players
+				calculate points for player
+				print scoresheet
+				print overall winner
+		*/
 }
+	

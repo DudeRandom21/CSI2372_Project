@@ -20,19 +20,26 @@ QwixxScoreSheet::~QwixxScoreSheet()
 
 bool QwixxScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
 {
-	switch (_color)
-	{
+	if (_color != Color::RED && _color != Color::YELLOW && _color != Color::GREEN && _color != Color::BLUE) {
+		return false;
+	}
+	else {
+		switch (_color)
+		{
 		case Color::RED:
-		return d_row[0]->validate(_pos, _dice);
+			return d_row[0]->validate(_pos, _dice);
 
 		case Color::YELLOW:
-		return d_row[1]->validate(_pos, _dice);
+			return d_row[1]->validate(_pos, _dice);
 
 		case Color::GREEN:
-		return d_row[2]->validate(_pos, _dice);
+			return d_row[2]->validate(_pos, _dice);
 
 		case Color::BLUE:
-		return d_row[3]->validate(_pos, _dice);
+			return d_row[3]->validate(_pos, _dice);
+		default:
+			return false;
+		}
 	}
 }
 
@@ -50,20 +57,22 @@ int QwixxScoreSheet::calcTotal()
 		}
 
 		switch(filled_cells){
-			case (1)	: current_score += 1; 
-			case (2)	: current_score += 3; 
-			case (3)	: current_score += 6; 
-			case (4)	: current_score += 10; 
-			case (5)	: current_score += 15; 
-			case (6) 	: current_score += 21; 
-			case (7) 	: current_score += 28; 
-			case (8) 	: current_score += 36; 
-			case (9) 	: current_score += 45; 
-			case (10) 	: current_score += 55; 
-			case (11) 	: current_score += 66;
-			case (12) 	: current_score += 78;  
+			case (1):	current_score += 1; 
+			case (2):	current_score += 3; 
+			case (3):	current_score += 6; 
+			case (4):	current_score += 10; 
+			case (5):	current_score += 15; 
+			case (6):	current_score += 21; 
+			case (7):	current_score += 28; 
+			case (8):	current_score += 36; 
+			case (9):	current_score += 45; 
+			case (10):	current_score += 55; 
+			case (11):	current_score += 66;
+			case (12):	current_score += 78;
+			default:	current_score += 0;
 		}
 	}
+	return current_score;
 }
 
 bool QwixxScoreSheet::operator!()
@@ -108,6 +117,8 @@ Row& QwixxScoreSheet::operator[](Color _color)
 
 		case Color::BLUE :
 			return *d_row[3];
+		default:
+			return *d_row[0];
 	}
 }
 
