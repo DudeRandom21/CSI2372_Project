@@ -4,9 +4,11 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <list>
 
 #include "Dice.h"
 #include "Row.h"
+
 
 class ScoreSheet
 {

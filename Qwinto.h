@@ -8,6 +8,7 @@
 #include "Common.h"
 
 
+
 class QwintoPlayer : public Player
 {
 	QwintoScoreSheet d_sS;

@@ -4,9 +4,9 @@
 #include "QwixxRow.h"
 #include "QwixxScoreSheet.h"
 
-RollOfDice rd1;
+	RollOfDice rd1;
 
-RollOfDice rd2;
+	RollOfDice rd2;
 
 Color randomColor();
 
@@ -43,17 +43,17 @@ int main(int argc, char const *argv[])
 	rd.push_back(Dice(Color::YELLOW));
 	rd.push_back(Dice(Color::BLUE));
 
-	QwixxScoreSheet ss1{ "Jane Doe" };
+	QwixxScoreSheet ss1{"Jane Doe"};
 
 	for (int i = 0; i < 100; ++i)
 	{
 		rd.roll();
-		ss1.score(rd, randomColor(), rd1.roll() % 10);
+		ss1.score(rd, randomColor(), rd1.roll()%10);
 	}
 
 	std::cout << ss1;
 
-	std::cout << !ss1 << std::endl;
+	std::cout << !ss1 <<std::endl;
 
 
 
@@ -65,13 +65,13 @@ int main(int argc, char const *argv[])
 
 Color randomColor()
 {
-	switch (rd1.roll() % 3)
+	switch (rd1.roll()%3)
 	{
-	case 0:
+		case 0:
 		return Color::RED;
-	case 1:
+		case 1:
 		return Color::YELLOW;
-	case 2:
+		case 2:
 		return Color::BLUE;
 	}
 }

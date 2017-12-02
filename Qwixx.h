@@ -3,30 +3,17 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
 
-#include "Dice.h"
 #include "Common.h"
-
-struct QwixxRow<class ,Color>
-{
-	//add prototypes
-};
-
-class QwixxScoreSheet : public ScoreSheet
-{
-
-public:
-	QwixxScoreSheet();
-	~QwixxScoreSheet();
-};
-
 
 class QwixxPlayer : public Player
 {
+	// denotes the stage of play, 0 for white, 1 for color
+	bool stage;
+	
 	QwixxScoreSheet d_sS;
 public:
-	QwixxPlayer();
+	QwixxPlayer() : stage( false );
 	~QwixxPlayer();	
 };
 
