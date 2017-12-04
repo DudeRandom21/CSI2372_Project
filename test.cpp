@@ -6,6 +6,11 @@
 #include "Player.h"
 #include "QwintoPlayer.h"
 
+// #include "QwixxRow.h"
+// #include "QwixxScoreSheet.h"
+// #include "Player.h"
+// #include "QwixxPlayer.h"
+
 	RollOfDice rd1;
 
 	RollOfDice rd2;

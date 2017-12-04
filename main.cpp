@@ -3,11 +3,11 @@
 #include <sstream>
 #include <vector>
 
+#include "Dice.h"
+
 #include "Qwinto.h"
 #include "QwintoRow.h"
 #include "QwintoScoreSheet.h"
-
-#include "Dice.h"
 
 #include "Qwixx.h"
 #include "QwixxRow.h"

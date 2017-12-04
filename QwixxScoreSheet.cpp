@@ -2,17 +2,17 @@
 
 QwixxScoreSheet::QwixxScoreSheet(std::string _name) : ScoreSheet(_name)
 {
-	d_row.reserve(4);
+	d_scoreSheetRows.reserve(4);
 
-	d_row.push_back( new QwixxRow<std::vector<int>,	Color::RED>() );
-	d_row.push_back( new QwixxRow<std::vector<int>,	Color::YELLOW>() );
-	d_row.push_back( new QwixxRow<std::list<int>,	Color::GREEN>() );
-	d_row.push_back( new QwixxRow<std::list<int>,	Color::BLUE>() );
+	d_scoreSheetRows.push_back( new QwixxRow<std::vector<int>,	Color::RED>() );
+	d_scoreSheetRows.push_back( new QwixxRow<std::vector<int>,	Color::YELLOW>() );
+	d_scoreSheetRows.push_back( new QwixxRow<std::list<int>,	Color::GREEN>() );
+	d_scoreSheetRows.push_back( new QwixxRow<std::list<int>,	Color::BLUE>() );
 }
 
 QwixxScoreSheet::~QwixxScoreSheet()
 {
-	for(auto& row : d_row)
+	for(auto& row : d_scoreSheetRows)
 	{
 		delete row;
 	}
@@ -27,16 +27,16 @@ bool QwixxScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
 		switch (_color)
 		{
 		case Color::RED:
-			return d_row[0]->validate(_pos, _dice);
+			return d_scoreSheetRows[0]->validate(_pos, _dice);
 
 		case Color::YELLOW:
-			return d_row[1]->validate(_pos, _dice);
+			return d_scoreSheetRows[1]->validate(_pos, _dice);
 
 		case Color::GREEN:
-			return d_row[2]->validate(_pos, _dice);
+			return d_scoreSheetRows[2]->validate(_pos, _dice);
 
 		case Color::BLUE:
-			return d_row[3]->validate(_pos, _dice);
+			return d_scoreSheetRows[3]->validate(_pos, _dice);
 		default:
 			return false;
 		}
@@ -51,7 +51,7 @@ int QwixxScoreSheet::calcTotal()
 	for (int i = 0; i < 4; ++i){
 		int filled_cells = 0;
 		for (int j = 0; j < 11; ++j){
-			if((*d_row[i])[j] > 0){
+			if((*d_scoreSheetRows[i])[j] > 0){
 				++filled_cells;
 			}
 		}
@@ -88,7 +88,7 @@ bool QwixxScoreSheet::operator!()
 		int filled_cells = 0;
 		for (int j = 0; j < 11; ++j)
 		{
-			if ((*d_row[i])[j] > 0)
+			if ((*d_scoreSheetRows[i])[j] > 0)
 				++filled_cells;
 		}
 		if (filled_cells == 6)
@@ -107,18 +107,18 @@ Row& QwixxScoreSheet::operator[](Color _color)
 	switch(_color)
 	{
 		case Color::RED :
-			return *d_row[0];
+			return *d_scoreSheetRows[0];
 
 		case Color::YELLOW :
-			return *d_row[1];
+			return *d_scoreSheetRows[1];
 
 		case Color::GREEN :
-			return *d_row[2];
+			return *d_scoreSheetRows[2];
 
 		case Color::BLUE :
-			return *d_row[3];
+			return *d_scoreSheetRows[3];
 		default:
-			return *d_row[0];
+			return *d_scoreSheetRows[0];
 	}
 }
 
