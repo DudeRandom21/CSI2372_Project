@@ -65,6 +65,7 @@ int QwintoScoreSheet::calcTotal()
 				current_score += (*d_row[1])[i+1];
 		}
 	}
+	return current_score;
 }
 
 bool QwintoScoreSheet::operator!()

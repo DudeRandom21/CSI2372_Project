@@ -4,6 +4,8 @@
 #include <iostream>
 #include <vector>
 #include <random>
+#include <list>
+
 
 enum Color {RED, YELLOW, GREEN, BLUE, WHITE};
 

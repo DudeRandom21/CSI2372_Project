@@ -10,6 +10,7 @@
 template <const Color d_c>
 class QwintoRow : public Row
 {
+	int d_row[10] = {0};
 	//this doesn't really go in the class but I feel like it's not really global either so not sure where to put it
 	inline static void printNumber(std::ostream& _out, int _value); //Not sure if this should be inline or not
 
@@ -18,6 +19,7 @@ protected:
 
 public:
 	QwintoRow();
+	virtual int &operator[](int _index);
 	virtual bool validate(int _index, RollOfDice roll);
 };
 
@@ -72,5 +74,12 @@ bool QwintoRow<d_c>::validate(int _index, RollOfDice _roll)
 
 	return true;
 }
+
+template <const Color d_c>
+int& QwintoRow<d_c>::operator[](int _index)
+{
+	return d_row[_index];
+}
+
 
 #endif

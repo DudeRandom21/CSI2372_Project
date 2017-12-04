@@ -1,12 +1,13 @@
-#ifndef QWINTO_SCORE_SHEET
-#define QWINTO_SCORE_SHEET
+#ifndef QWIXX_SCORE_SHEET
+#define QWIXX_SCORE_SHEET
 
 #include "Dice.h"
-#include "QwintoRow.h"
+#include "QwixxRow.h"
 #include "ScoreSheet.h"
 
 
-class QwintoScoreSheet : public ScoreSheet
+
+class QwixxScoreSheet : public ScoreSheet
 {
 
 protected:
@@ -15,11 +16,10 @@ protected:
 	virtual Row& operator[](Color _color);
 
 public:
-	QwintoScoreSheet(std::string _name);
-	~QwintoScoreSheet();
+	QwixxScoreSheet(std::string _name);
+	~QwixxScoreSheet();
 	virtual bool operator!();
 
 };
-
 
 #endif
