@@ -1,16 +1,5 @@
 #include "QwintoRow.h"
 
-template<const Color d_c>
-inline void QwintoRow<d_c>::printNumber(std::ostream& _out, int _value)
-{
-	if (_value == 0)
-		_out << "  ";
-	else if (_value == -1)
-		_out << "XX";
-	else
-		_out << std::setw(2) << _value;	
-}
-
 
 //specializations of the insertion operator for template QwintoRow
 

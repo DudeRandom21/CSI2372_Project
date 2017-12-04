@@ -11,11 +11,10 @@ template <class rowType, const Color d_c>
 class QwixxRow : public Row
 {
 	rowType d_row;
-	inline static void printNumber(std::ostream& _out, int _value);
 
 protected:
 	virtual void print(std::ostream& _out) const;
-	virtual int & operator[](int _index);
+	virtual int & operator[](int _index) const;
 
 public:
 	QwixxRow();
