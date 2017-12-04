@@ -12,7 +12,7 @@ class QwixxRow : public Row
 {
 	rowType d_row;
 	int d_ref[11] = { 0 }; //reference array for the numbering order
-	inline static void printNumber(std::ostream& _out, int _value);
+	inline void printNumber(std::ostream& _out, int _value);
 
 protected:
 	virtual void print(std::ostream& _out) const;

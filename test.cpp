@@ -1,8 +1,10 @@
 #include <iostream>
 
 #include "Dice.h"
-#include "QwixxRow.h"
-#include "QwixxScoreSheet.h"
+#include "QwintoRow.h"
+#include "QwintoScoreSheet.h"
+#include "Player.h"
+#include "QwintoPlayer.h"
 
 	RollOfDice rd1;
 
@@ -44,20 +46,32 @@ int main(int argc, char const *argv[])
 	rd.push_back(Dice(Color::BLUE));
 
 
-	QwintoScoreSheet ss1{"Jane Doe"};
+	Player *p1 = new QwintoPlayer("Jane Doe");
 
-//	QwixxScoreSheet ss1{"Jane Doe"};
+	RollOfDice active = p1->inputBeforeRoll(rd);
+
+	active.roll();
+
+	p1->inputAfterRoll(active);
+
+	delete p1;
 
 
-	for (int i = 0; i < 100; ++i)
-	{
-		rd.roll();
-		ss1.score(rd, randomColor(), rd1.roll()%10);
-	}
 
-	std::cout << ss1;
+	// QwintoScoreSheet ss1{"Jane Doe"};
 
-	std::cout << !ss1 <<std::endl;
+	//QwixxScoreSheet ss1{"Jane Doe"};
+
+
+	// for (int i = 0; i < 100; ++i)
+	// {
+	// 	rd.roll();
+	// 	ss1.score(rd, randomColor(), rd1.roll()%10);
+	// }
+
+	// std::cout << ss1;
+
+	// std::cout << !ss1 <<std::endl;
 
 
 

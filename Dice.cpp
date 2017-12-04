@@ -3,7 +3,7 @@
 #include "Dice.h"
 
 std::uniform_int_distribution<int> RandomDice::die{1,6};
-std::default_random_engine RandomDice::generator{unsigned int(time(NULL))};
+std::default_random_engine RandomDice::generator{static_cast<unsigned long>(time(NULL))};
 
 Dice::Dice(Color _color) : d_color(_color)
 {
@@ -17,6 +17,19 @@ int Dice::roll()
 
 std::ostream& operator<<(std::ostream& _out, const Dice& _dice)
 {
+	switch(_dice.d_color)
+	{
+		case Color::RED:
+		_out << "red ";
+		break;
+		case Color::YELLOW:
+		_out << "yellow ";
+		break;
+		case Color::BLUE:
+		_out << "blue ";
+		break;
+	}
+
 	_out << _dice.d_face;
 	return _out;
 }

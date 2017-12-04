@@ -29,6 +29,8 @@ bool ScoreSheet::operator!()
 	return false;
 }
 
+void ScoreSheet::addFailedThrow() {++d_failedThrows;}
+
 std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS)
 {
 	_out << "Player name: " << _sS.d_name << "\t\t   Points: " << _sS.d_points << std::endl;
@@ -49,10 +51,3 @@ std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS)
 
 	return _out;
 }
-
-
-// Class Player
-Player::Player() : d_active(true) {}
-Player::~Player() {}
-
-

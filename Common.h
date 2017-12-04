@@ -4,7 +4,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <list>
 
 #include "Dice.h"
 #include "Row.h"
@@ -30,21 +29,10 @@ public:
 	bool score(RollOfDice _dice, Color _color, int _pos = -1);
 	int setTotal();
 	virtual bool operator!();
+	void addFailedThrow();
 	
 	friend std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS);
 };
 
-
-class Player
-{
-protected:
-	bool d_active;
-
-public:
-	Player();
-	~Player();
-	virtual void inputBeforeRoll(RollOfDice& _roll) = 0;
-	virtual void inputAfterRoll(RollOfDice& _roll) = 0;	
-};
 
 #endif
