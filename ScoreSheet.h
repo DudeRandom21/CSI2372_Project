@@ -16,7 +16,7 @@ protected:
 	int d_failedThrows;
 	int d_points;
 
-	std::vector<Row*> d_row;
+	std::vector<Row*> d_scoreSheetRows;
 	
 	virtual bool validate(RollOfDice _dice, Color _color, int _pos = -1) = 0;
 	virtual int calcTotal() = 0;
