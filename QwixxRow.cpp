@@ -105,7 +105,15 @@ void QwixxRow<std::list<int>, Color::BLUE>::print(std::ostream& _out) const
 // Specialized [] operator based on row type (vector or list)
 
 template<typename rowType, Color d_c>
-int& QwixxRow<rowType, d_c>::operator[](int _index) const
+const int& QwixxRow<rowType, d_c>::operator[](const int _index) const
+{
+	auto iter = d_row.begin();
+	std::advance(iter, _index);
+	auto x = *iter;
+}
+
+template<typename rowType, Color d_c>
+int& QwixxRow<rowType, d_c>::operator[](const int _index)
 {
 	auto iter = d_row.begin();
 	std::advance(iter, _index);

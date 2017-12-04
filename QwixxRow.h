@@ -14,7 +14,8 @@ class QwixxRow : public Row
 
 protected:
 	virtual void print(std::ostream& _out) const;
-	virtual int & operator[](int _index) const;
+	virtual int & operator[](const int _index);
+	virtual const int & operator[](const int _index) const;
 
 public:
 	QwixxRow();
