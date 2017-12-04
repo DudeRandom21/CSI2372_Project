@@ -15,17 +15,6 @@
 
 int main(int argc, char const *argv[])
 {
-
-	//REMOVE THIS
-	std::cerr << "********************************************";
-	std::cerr << "IMPLEMENT THE VALIDATION FOR QwintoScoreSheet COLUMNS!!";
-	std::cerr << "********************************************";
-
-	return 0;
-	//UP TO HERE
-
-
-
 	std::cout << "Welcome to Qwinto/Qwixx" << std::endl;
 
 	std::cout << "Please select game version" << std::endl;

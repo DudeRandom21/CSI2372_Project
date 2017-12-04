@@ -19,17 +19,41 @@ QwintoScoreSheet::~QwintoScoreSheet()
 
 bool QwintoScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
 {
+	bool rowValidate;
+	int red, yellow, blue;
 	switch (_color)
 	{
 		case Color::RED:
-		return d_scoreSheetRows[0]->validate(_pos, _dice);
+		//validate function from row
+		rowValidate = d_row[0]->validate(_pos, _dice);
+		//check for stacked same values
+		if(_pos < 9)
+		{
+			rowValidate = rowValidate && d_row[1][_pos+1] != _dice;
+			if (_pos < 8)
+				rowValidate = rowValidate && d_row[2][_pos+2] != _dice;
+		}
+		break;
 
 		case Color::YELLOW:
-		return d_scoreSheetRows[1]->validate(_pos, _dice);
+		rowValidate = d_row[1]->validate(_pos, _dice);
+		if(_pos < 9)
+			rowValidate = rowValidate && d_row[2][_pos-1] != _dice;
+		if (_pos > 0)
+			rowValidate = rowValidate && d_row[0][_pos-1] != _dice;
+		break;
 
 		case Color::BLUE:
-		return d_scoreSheetRows[2]->validate(_pos, _dice);
+		rowValidate = d_row[2]->validate(_pos, _dice);
+		if(_pos > 0)
+		{
+			rowValidate = rowValidate && d_row[1][_pos-1] != _dice;
+			if (_pos > 1)
+				rowValidate = rowValidate && d_row[2][_pos-2] != _dice;
+		}
+		break;
 	}
+	return rowValidate;
 }
 
 

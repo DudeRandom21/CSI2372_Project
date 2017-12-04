@@ -6,8 +6,6 @@
 #include <vector>
 
 #include "QwintoScoreSheet.h"
-#include "Common.h"
-
 
 
 class QwintoPlayer : public Player
