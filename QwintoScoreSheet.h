@@ -2,8 +2,8 @@
 #define QWINTO_SCORE_SHEET
 
 #include "Dice.h"
-#include "Common.h"
 #include "QwintoRow.h"
+#include "ScoreSheet.h"
 
 
 class QwintoScoreSheet : public ScoreSheet

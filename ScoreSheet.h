@@ -1,5 +1,5 @@
-#ifndef COMMON
-#define COMMON
+#ifndef SCORESHEET
+#define SCORESHEET
 
 #include <iostream>
 #include <string>

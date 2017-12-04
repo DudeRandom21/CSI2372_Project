@@ -5,7 +5,7 @@
 #include <string>
 
 #include "Dice.h"
-#include "Common.h"
+#include "ScoreSheet.h"
 
 class Player
 {

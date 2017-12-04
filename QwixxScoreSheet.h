@@ -2,8 +2,8 @@
 #define QWIXX_SCORE_SHEET
 
 #include "Dice.h"
-#include "Common.h"
 #include "QwixxRow.h"
+#include "ScoreSheet.h"
 
 
 
