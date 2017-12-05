@@ -1,9 +1,5 @@
 #include "QwixxPlayer.h"
 
-void clean(std::string _str);
-int convert_to_index(std::string _str);
-Color convert_to_color(std::string _str);
-
 QwixxPlayer::QwixxPlayer(std::string _name) : Player( new QwixxScoreSheet(_name) ) {}
 
 QwixxPlayer::~QwixxPlayer() { delete d_ScoreSheet; }

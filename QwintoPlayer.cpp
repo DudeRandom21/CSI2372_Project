@@ -1,17 +1,5 @@
 #include "QwintoPlayer.h"
 
-
-
-
-
-void clean(std::string _str);
-int convert_to_index(std::string _str);
-Color convert_to_color(std::string _str);
-
-
-
-
-
 QwintoPlayer::QwintoPlayer(std::string _name) : Player(new QwintoScoreSheet(_name)) {}
 
 QwintoPlayer::~QwintoPlayer() {delete d_ScoreSheet;}
