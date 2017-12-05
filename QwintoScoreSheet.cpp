@@ -25,31 +25,31 @@ bool QwintoScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
 	{
 		case Color::RED:
 		//validate function from row
-		rowValidate = d_row[0]->validate(_pos, _dice);
+		rowValidate = d_scoreSheetRows[0]->validate(_pos, _dice);
 		//check for stacked same values
 		if(_pos < 9)
 		{
-			rowValidate = rowValidate && d_row[1][_pos+1] != _dice;
+			rowValidate = rowValidate && (*d_scoreSheetRows[1])[_pos+1] != _dice;
 			if (_pos < 8)
-				rowValidate = rowValidate && d_row[2][_pos+2] != _dice;
+				rowValidate = rowValidate && (*d_scoreSheetRows[2])[_pos+2] != _dice;
 		}
 		break;
 
 		case Color::YELLOW:
-		rowValidate = d_row[1]->validate(_pos, _dice);
+		rowValidate = d_scoreSheetRows[1]->validate(_pos, _dice);
 		if(_pos < 9)
-			rowValidate = rowValidate && d_row[2][_pos-1] != _dice;
+			rowValidate = rowValidate && (*d_scoreSheetRows[2])[_pos-1] != _dice;
 		if (_pos > 0)
-			rowValidate = rowValidate && d_row[0][_pos-1] != _dice;
+			rowValidate = rowValidate && (*d_scoreSheetRows[0])[_pos-1] != _dice;
 		break;
 
 		case Color::BLUE:
-		rowValidate = d_row[2]->validate(_pos, _dice);
+		rowValidate = d_scoreSheetRows[2]->validate(_pos, _dice);
 		if(_pos > 0)
 		{
-			rowValidate = rowValidate && d_row[1][_pos-1] != _dice;
+			rowValidate = rowValidate && (*d_scoreSheetRows[1])[_pos-1] != _dice;
 			if (_pos > 1)
-				rowValidate = rowValidate && d_row[2][_pos-2] != _dice;
+				rowValidate = rowValidate && (*d_scoreSheetRows[2])[_pos-2] != _dice;
 		}
 		break;
 	}

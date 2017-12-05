@@ -6,7 +6,7 @@ std::ostream& operator<<(std::ostream& _out, const Row& _row)
 	return _out;
 }
 
-inline void printNumber(std::ostream& _out, int _value)
+void Row::printNumber(std::ostream& _out, int _value) const
 {
 	if (_value == 0)
 		_out << "  ";

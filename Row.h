@@ -14,7 +14,7 @@ class Row
 protected:
 	virtual void print(std::ostream& _out) const = 0;
 
-	inline void printNumber(std::ostream& _out, int _value) const;
+	void printNumber(std::ostream& _out, int _value) const;
 
 public:
 	virtual ~Row() = default;
