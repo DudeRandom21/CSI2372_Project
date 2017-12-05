@@ -12,17 +12,17 @@ class Row
 {
 
 protected:
-	virtual void print(std::ostream& _out) const = 0;
+    virtual void print(std::ostream& _out) const = 0;
 
-	inline void printNumber(std::ostream& _out, int _value) const;
+    void printNumber(std::ostream& _out, int _value) const;
 
 public:
-	virtual ~Row() = default;
-	virtual int &operator[](int _index) = 0;
-	virtual bool validate(int _index, RollOfDice roll) = 0;
+    virtual ~Row() = default;
+    virtual int &operator[](int _index) = 0;
+    virtual bool validate(int _index, RollOfDice roll) = 0;
 
 
-	friend std::ostream& operator<<(std::ostream& _out, const Row& _row);
+    friend std::ostream& operator<<(std::ostream& _out, const Row& _row);
 };
 
 

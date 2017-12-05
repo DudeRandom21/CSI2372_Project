@@ -5,27 +5,24 @@
 
 #include "Dice.h"
 
-#include "Qwinto.h"
+#include "QwintoPlayer.h"
 #include "QwintoRow.h"
 #include "QwintoScoreSheet.h"
 
-#include "Qwixx.h"
+#include "QwixxPlayer.h"
 #include "QwixxRow.h"
 #include "QwixxScoreSheet.h"
 
 int main(int argc, char const *argv[])
 {
-
-	//REMOVE THIS
-	std::cerr << "********************************************";
-	std::cerr << "IMPLEMENT THE VALIDATION FOR QwintoScoreSheet COLUMNS!!";
-	std::cerr << "********************************************";
-
+	std::cout << "Hello, you piece of Garbage" << std::endl;
 	return 0;
-	//UP TO HERE
+}
+
+	
 
 
-
+	/*
 	std::cout << "Welcome to Qwinto/Qwixx" << std::endl;
 
 	std::cout << "Please select game version" << std::endl;
@@ -55,7 +52,7 @@ int main(int argc, char const *argv[])
 			QwintoPlayer player(vObj);
 		}
 
-		while () { // TODO End condition?
+		while (false) { // TODO End condition?
 
 		}
 	}
@@ -66,13 +63,13 @@ int main(int argc, char const *argv[])
 			QwixxPlayer player(vObj);
 		}
 
-		while () { // TODO End condition?
+		while (false) { // TODO End condition?
 
 		}
 	}
 
 	
-
+	*/
 
 
 		/*
@@ -94,5 +91,9 @@ int main(int argc, char const *argv[])
 				print scoresheet
 				print overall winner
 		*/
+
+
+/*
+	return 0;
 }
-	
+	*/

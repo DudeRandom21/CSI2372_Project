@@ -87,7 +87,7 @@ void QwintoPlayer::inputAfterRoll(RollOfDice& _roll)
 
 }
 
-void clean(std::string _str)
+void QwintoPlayer::clean(std::string _str)
 {
 //TODO: clean the string before processing, right now it juse crashes on bad input.
 	// str.erase(std::remove_if(str.begin(), str.end(), std::isalpha));
@@ -97,7 +97,7 @@ void clean(std::string _str)
 
 
 //TODO: rework the RollOfDice to get by color instead of index
-int convert_to_index(std::string _str)
+int QwintoPlayer::convert_to_index(std::string _str)
 {
 		if(_str == "red")
 			return 0;
@@ -109,7 +109,7 @@ int convert_to_index(std::string _str)
 			return 2;
 }
 
-Color convert_to_color(std::string _str)
+Color QwintoPlayer::convert_to_color(std::string _str)
 {
 		if(_str == "red")
 			return Color::RED;
