@@ -21,7 +21,8 @@ public:
 	QwintoPlayer(std::string _name);
 	virtual ~QwintoPlayer();
 	virtual RollOfDice inputBeforeRoll(RollOfDice& _roll);
-	virtual void inputAfterRoll(RollOfDice& _roll);	
+	virtual void inputAfterRoll(RollOfDice& _roll);
+	virtual void printSS();
 };
 
 #endif

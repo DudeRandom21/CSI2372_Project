@@ -21,6 +21,9 @@ public:
 	virtual ~Player() = default;
 	virtual RollOfDice inputBeforeRoll(RollOfDice& _roll) = 0;
 	virtual void inputAfterRoll(RollOfDice& _roll) = 0;	
+
+	//TODO: Delete this
+	virtual void printSS() = 0;
 };
 
 #endif

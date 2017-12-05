@@ -9,9 +9,10 @@ RollOfDice QwintoPlayer::inputBeforeRoll(RollOfDice& _roll)
 	d_active = true;
 
 	std::cout << "Which dice would you like to roll?" << std::endl;
-	std::cout << "(Seperate each dice by a space ex: red blue): ";
+	std::cout << "(Seperate each dice by a space ex: red blue): " <<std::endl;
 
 	std::string str;
+	std::cin.ignore();
 	std::getline(std::cin, str);
 	clean(str);
 
@@ -34,6 +35,7 @@ RollOfDice QwintoPlayer::inputBeforeRoll(RollOfDice& _roll)
 void QwintoPlayer::inputAfterRoll(RollOfDice& _roll)
 {
 	std::cout << _roll;
+	std::cout << *d_ScoreSheet;
 	
 	if(!d_active)
 	{
@@ -49,7 +51,8 @@ void QwintoPlayer::inputAfterRoll(RollOfDice& _roll)
 		std::string color;
 		int index;
 
-		std::cout << "What row would you like to score the dice in? (enter color) ";
+		std::cout << "What row would you like to score the roll in? (enter color) ";
+		std::cin.ignore();
 		std::getline(std::cin, color);
 
 //TODO: implement loop here instead of clean function
@@ -74,6 +77,12 @@ void QwintoPlayer::inputAfterRoll(RollOfDice& _roll)
 		d_ScoreSheet->addFailedThrow();
 	d_active = false;
 
+}
+
+//TODO: Delete this
+void QwintoPlayer::printSS()
+{
+	std::cout << *d_ScoreSheet;
 }
 
 void QwintoPlayer::clean(std::string _str)

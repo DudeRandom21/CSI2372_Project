@@ -42,10 +42,10 @@ int main(int argc, char const *argv[])
 	}
 
 
-	// players.reserve(playerNum);
+	players.reserve(playerNum);
 
 	// Qwinto Game
-	if (gameVers == 0)
+	if (gameVers == 1)
 	{
 		for (auto name : playerNames) {
 			players.push_back(new QwintoPlayer(name));
@@ -55,12 +55,9 @@ int main(int argc, char const *argv[])
 		rd.push_back(Dice(Color::BLUE));
 	}
 
-	//WORKING HERE: you need to figure out why the main loop doesn't really run, it just loops forever but doens't execute the actual inside code
-	// std::cerr << *players[0] <<std::endl;
-
 //TODO: uncomment this
 	// // Qwixx Game
-	// else if (gameVers == 1)
+	// else if (gameVers == 2)
 	// {
 	// 	for (auto name : playerNames) {
 	// 		players.push_back(QwixxPlayer(name));
@@ -79,7 +76,7 @@ int main(int argc, char const *argv[])
 			RollOfDice current_roll = active_player->inputBeforeRoll(rd);
 			for(auto player : players)
 			{
-				player->inputBeforeRoll(current_roll);
+				player->inputAfterRoll(current_roll);
 			}
 		}
 	}
