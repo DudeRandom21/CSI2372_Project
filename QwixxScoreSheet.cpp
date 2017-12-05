@@ -4,10 +4,10 @@ QwixxScoreSheet::QwixxScoreSheet(std::string _name) : ScoreSheet(_name)
 {
 	d_scoreSheetRows.reserve(4);
 
-	d_scoreSheetRows.push_back( new QwixxRow<std::vector<int>,	Color::RED>() );
-	d_scoreSheetRows.push_back( new QwixxRow<std::vector<int>,	Color::YELLOW>() );
-	d_scoreSheetRows.push_back( new QwixxRow<std::list<int>,	Color::GREEN>() );
-	d_scoreSheetRows.push_back( new QwixxRow<std::list<int>,	Color::BLUE>() );
+	d_scoreSheetRows.push_back( new QwixxRow<std::vector<int>, Color::RED>() );
+	d_scoreSheetRows.push_back( new QwixxRow<std::vector<int>, Color::YELLOW>() );
+	d_scoreSheetRows.push_back( new QwixxRow<std::list<int>, Color::GREEN>() );
+	d_scoreSheetRows.push_back( new QwixxRow<std::list<int>, Color::BLUE>() );
 }
 
 QwixxScoreSheet::~QwixxScoreSheet()

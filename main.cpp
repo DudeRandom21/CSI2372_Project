@@ -5,13 +5,14 @@
 
 #include "Dice.h"
 
+#include "QwintoPlayer.h"
 #include "QwintoRow.h"
 #include "QwintoScoreSheet.h"
 #include "QwintoPlayer.h"
 
-// #include "Qwixx.h"
-// #include "QwixxRow.h"
-// #include "QwixxScoreSheet.h"
+#include "QwixxPlayer.h"
+#include "QwixxRow.h"
+#include "QwixxScoreSheet.h"
 
 int main(int argc, char const *argv[])
 {
@@ -106,5 +107,6 @@ int main(int argc, char const *argv[])
 				print scoresheet
 				print overall winner
 		*/
-}
 	
+	return 0;
+}

@@ -4,7 +4,7 @@ void clean(std::string _str);
 int convert_to_index(std::string _str);
 Color convert_to_color(std::string _str);
 
-QwixxPlayer::QwixxPlayer(std::string _name) : Player(new QwixxScoreSheet(_name)) {}
+QwixxPlayer::QwixxPlayer(std::string _name) : Player( new QwixxScoreSheet(_name) ) {}
 
 QwixxPlayer::~QwixxPlayer() { delete d_ScoreSheet; }
 
@@ -79,17 +79,14 @@ void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
 
 }
 
-void clean(std::string _str)
+void QwixxPlayer::clean(std::string _str)
 {
-//TODO: clean the string before processing, right now it juse crashes on bad input.
-	// str.erase(std::remove_if(str.begin(), str.end(), std::isalpha));
-
-//ALSO: make sure there are no duplicates (red, red)
+	std::cout << "Cleaning and Stuff" << std::endl;
 }
 
 
 //TODO: rework the RollOfDice to get by color instead of index
-int convert_to_index(std::string _str)
+int QwixxPlayer::convert_to_index(std::string _str)
 {
 	if (_str == "red")
 		return 0;
@@ -103,7 +100,7 @@ int convert_to_index(std::string _str)
 		return 0;
 }
 
-Color convert_to_color(std::string _str)
+Color QwixxPlayer::convert_to_color(std::string _str)
 {
 	if (_str == "red")
 		return Color::RED;

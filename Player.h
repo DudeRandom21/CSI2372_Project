@@ -16,8 +16,11 @@ protected:
 public:
 	Player(ScoreSheet *_ss);
 	virtual ~Player() = default;
+	virtual void clean(std::string _str) = 0;
 	virtual RollOfDice inputBeforeRoll(RollOfDice& _roll) = 0;
 	virtual void inputAfterRoll(RollOfDice& _roll) = 0;	
+	virtual int convert_to_index(std::string _str) = 0;
+	virtual Color convert_to_color(std::string _str) = 0;
 };
 
 #endif
