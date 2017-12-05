@@ -5,16 +5,25 @@
 
 #include "Dice.h"
 
+#include "QwintoPlayer.h"
 #include "QwintoRow.h"
 #include "QwintoScoreSheet.h"
 #include "QwintoPlayer.h"
 
-// #include "Qwixx.h"
-// #include "QwixxRow.h"
-// #include "QwixxScoreSheet.h"
+#include "QwixxPlayer.h"
+#include "QwixxRow.h"
+#include "QwixxScoreSheet.h"
 
 int main(int argc, char const *argv[])
 {
+	std::cout << "Hello, you piece of Garbage" << std::endl;
+	return 0;
+}
+
+	
+
+
+	/*
 	std::cout << "Welcome to Qwinto/Qwixx" << std::endl;
 
 	std::cout << "Please select game version" << std::endl;
@@ -63,7 +72,7 @@ int main(int argc, char const *argv[])
 	// }
 
 	
-
+	*/
 
 
 		/*
@@ -85,5 +94,8 @@ int main(int argc, char const *argv[])
 				print scoresheet
 				print overall winner
 		*/
-}
 	
+/*
+	return 0;
+}
+	*/
