@@ -5,13 +5,13 @@
 
 #include "Dice.h"
 
-#include "Qwinto.h"
 #include "QwintoRow.h"
 #include "QwintoScoreSheet.h"
+#include "QwintoPlayer.h"
 
-#include "Qwixx.h"
-#include "QwixxRow.h"
-#include "QwixxScoreSheet.h"
+// #include "Qwixx.h"
+// #include "QwixxRow.h"
+// #include "QwixxScoreSheet.h"
 
 int main(int argc, char const *argv[])
 {
@@ -44,21 +44,23 @@ int main(int argc, char const *argv[])
 			QwintoPlayer player(vObj);
 		}
 
-		while () { // TODO End condition?
+		while (false) { // TODO End condition?
 
 		}
 	}
 
-	// Qwixx Game
-	else if (gameVers == 1) {
-		for (auto vObj : playerNames) {
-			QwixxPlayer player(vObj);
-		}
 
-		while () { // TODO End condition?
+//TODO: uncomment this
+	// // Qwixx Game
+	// else if (gameVers == 1) {
+	// 	for (auto vObj : playerNames) {
+	// 		QwixxPlayer player(vObj);
+	// 	}
 
-		}
-	}
+	// 	while () { // TODO End condition?
+
+	// 	}
+	// }
 
 	
 

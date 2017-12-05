@@ -35,7 +35,7 @@ std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS)
 {
 	_out << "Player name: " << _sS.d_name << "\t\t   Points: " << _sS.d_points << std::endl;
 
-	for(const auto& row : _sS.d_row)
+	for(const auto& row : _sS.d_scoreSheetRows)
 	{
 		_out << "---------------------------------------------" << std::endl;
 		_out << *row;

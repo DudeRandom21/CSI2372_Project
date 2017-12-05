@@ -4,8 +4,8 @@
 #include <iostream>
 #include <string>
 
+#include "Player.h"
 #include "QwixxScoreSheet.h"
-#include "Common.h"
 
 
 class QwixxPlayer : public Player

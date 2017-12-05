@@ -64,6 +64,7 @@ void QwintoPlayer::inputAfterRoll(RollOfDice& _roll)
 		std::cout << "What row would you like to score the dice in? (enter color) ";
 		std::getline(std::cin, color);
 
+//TODO: implement loop here instead of clean function
 		clean(color);
 
 		std::cout << "What column (index) do you want to score in?" << std::endl;
