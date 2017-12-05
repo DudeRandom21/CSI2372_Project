@@ -15,10 +15,14 @@
 
 int main(int argc, char const *argv[])
 {
+	std::vector<Player*> players;
+	RollOfDice rd;
+
 	std::cout << "Welcome to Qwinto/Qwixx" << std::endl;
 
 	std::cout << "Please select game version" << std::endl;
 	std::cout << "Qwinto (1), Qwixx(2)" << std::endl;
+	//TODO: loop back if input is invalid
 	int gameVers = 0;
 	std::cin >> gameVers;
 
@@ -37,34 +41,51 @@ int main(int argc, char const *argv[])
 	}
 
 
+	// players.reserve(playerNum);
 
 	// Qwinto Game
-	if (gameVers == 0) {
-		for (auto vObj : playerNames) {
-			QwintoPlayer player(vObj);
+	if (gameVers == 0)
+	{
+		for (auto name : playerNames) {
+			players.push_back(new QwintoPlayer(name));
 		}
+		rd.push_back(Dice(Color::RED));
+		rd.push_back(Dice(Color::YELLOW));
+		rd.push_back(Dice(Color::BLUE));
+	}
 
-		while (false) { // TODO End condition?
+	//WORKING HERE: you need to figure out why the main loop doesn't really run, it just loops forever but doens't execute the actual inside code
+	// std::cerr << *players[0] <<std::endl;
 
+//TODO: uncomment this
+	// // Qwixx Game
+	// else if (gameVers == 1)
+	// {
+	// 	for (auto name : playerNames) {
+	// 		players.push_back(QwixxPlayer(name));
+	// 	}
+	// 	rd.push_back(Dice(Color::WHITE));
+	// 	rd.push_back(Dice(Color::WHITE));
+	// 	rd.push_back(Dice(Color::RED));
+	// 	rd.push_back(Dice(Color::YELLOW));
+	// 	rd.push_back(Dice(Color::GREEN));
+	// 	rd.push_back(Dice(Color::BLUE));
+	// }
+	
+	while (true) { // TODO End condition?
+		for(auto active_player : players)
+		{
+			RollOfDice current_roll = active_player->inputBeforeRoll(rd);
+			for(auto player : players)
+			{
+				player->inputBeforeRoll(current_roll);
+			}
 		}
 	}
 
 
-//TODO: uncomment this
-	// // Qwixx Game
-	// else if (gameVers == 1) {
-	// 	for (auto vObj : playerNames) {
-	// 		QwixxPlayer player(vObj);
-	// 	}
-
-	// 	while () { // TODO End condition?
-
-	// 	}
-	// }
-
-	
-
-
+	for(auto player : players)
+		delete player;
 
 		/*
 		Ask player to choose game version, number of players and names of players.
