@@ -71,8 +71,8 @@ int main(int argc, char const *argv[])
 	 	rd.push_back(Dice(Color::WHITE));
 	 	rd.push_back(Dice(Color::WHITE));
 	 }
-    bool contGame = true;
-	while (contGame) {
+    bool endCond = false;
+	while (!endCond) {
         
 		for(auto active_player : players)
 		{
@@ -84,7 +84,7 @@ int main(int argc, char const *argv[])
 		}
         
         for(auto player : players){
-            contGame = contGame && !*player;
+            endCond = endCond || !*player;
         }
         
 	}
