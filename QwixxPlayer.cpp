@@ -14,6 +14,8 @@ RollOfDice QwixxPlayer::inputBeforeRoll(RollOfDice& _roll)
 	std::vector<Color> dice_colors = get_color_index_vect(std::cin);    
     
     RollOfDice rd;
+    rd.push_back(_roll[4]);
+    rd.push_back(_roll[5]);
     for(auto color : dice_colors)
         rd.push_back(_roll[convert_to_index(color)]);
 
@@ -70,19 +72,20 @@ void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
 //TODO: rework the RollOfDice to get by color instead of index
 int QwixxPlayer::convert_to_index(Color _color)
 {
-	if(_color == Color::WHITE)
+
+	if(_color == Color::RED)
 		return 0;
 
-	else if(_color == Color::RED)
+	else if(_color == Color::YELLOW)
 		return 1;
 
-	else if(_color == Color::YELLOW)
+	else if(_color == Color::GREEN)
 		return 2;
 
-	else if(_color == Color::GREEN)
+	else if(_color == Color::BLUE)
 		return 3;
 
-	else if(_color == Color::BLUE)
+	else if(_color == Color::WHITE)
 		return 4;
 
     else
