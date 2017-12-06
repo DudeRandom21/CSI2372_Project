@@ -10,9 +10,9 @@
 #include "QwintoScoreSheet.h"
 #include "QwintoPlayer.h"
 
-#include "QwixxPlayer.h"
-#include "QwixxRow.h"
-#include "QwixxScoreSheet.h"
+// #include "QwixxPlayer.h"
+// #include "QwixxRow.h"
+// #include "QwixxScoreSheet.h"
 
 int main(int argc, char const *argv[])
 {
@@ -26,10 +26,12 @@ int main(int argc, char const *argv[])
 	//TODO: loop back if input is invalid
 	int gameVers = 0;
 	std::cin >> gameVers;
+	std::cin.ignore(256, '\n');
 
 	int playerNum = 0;
 	std::cout << "How many players?" << std::endl;
 	std::cin >> playerNum;
+	std::cin.ignore(256, '\n');
 
 	std::vector<std::string> playerNames;
 	std::string name;
@@ -38,6 +40,7 @@ int main(int argc, char const *argv[])
 	for (int i = 0; i < playerNum; i++) {
 		std::cout << "Player " << i + 1 << " Name: " << std::flush;
 		std::cin >> name;
+		std::cin.ignore(256, '\n');
 		playerNames.push_back(name);
 	}
 
