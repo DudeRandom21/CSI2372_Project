@@ -7,7 +7,7 @@
 #include <list>
 
 
-enum Color {RED, YELLOW, GREEN, BLUE, WHITE};
+enum Color {INVALID, RED, YELLOW, GREEN, BLUE, WHITE};
 
 struct RandomDice
 {
@@ -27,8 +27,8 @@ struct Dice
 struct RollOfDice : public std::vector<Dice>
 {
 	RollOfDice roll();
-	RollOfDice pair(int _index1, int _index2);
-	operator int();
+	RollOfDice pair(const int _index1, const int _index2) const;
+	operator int() const;
 	friend std::ostream& operator<<(std::ostream& _out, const RollOfDice& _roll);
 };
 
