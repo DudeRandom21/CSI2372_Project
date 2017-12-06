@@ -10,9 +10,9 @@
 #include "QwintoScoreSheet.h"
 #include "QwintoPlayer.h"
 
-// #include "QwixxPlayer.h"
-// #include "QwixxRow.h"
-// #include "QwixxScoreSheet.h"
+#include "QwixxPlayer.h"
+#include "QwixxRow.h"
+#include "QwixxScoreSheet.h"
 
 int main(int argc, char const *argv[])
 {
@@ -64,12 +64,12 @@ int main(int argc, char const *argv[])
 	 	for (auto name : playerNames) {
 	 		players.push_back(new QwixxPlayer(name));
 	 	}
-	 	rd.push_back(Dice(Color::WHITE));
-	 	rd.push_back(Dice(Color::WHITE));
 	 	rd.push_back(Dice(Color::RED));
 	 	rd.push_back(Dice(Color::YELLOW));
 	 	rd.push_back(Dice(Color::GREEN));
 	 	rd.push_back(Dice(Color::BLUE));
+	 	rd.push_back(Dice(Color::WHITE));
+	 	rd.push_back(Dice(Color::WHITE));
 	 }
     bool contGame = true;
 	while (contGame) {

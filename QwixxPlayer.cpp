@@ -10,24 +10,13 @@ RollOfDice QwixxPlayer::inputBeforeRoll(RollOfDice& _roll)
     
     std::cout << "Which dice would you like to roll?" << std::endl;
     std::cout << "(Seperate each dice by a space ex: red blue): " <<std::endl;
-    
-    std::string str;
-    std::cin.ignore();
-    std::getline(std::cin, str);
-    clean(str);
-    
-    //converting input line into vector of dice colors
-    std::istringstream ss(str);
-    std::vector<int> dice_colors;
-    
-    std::string tmp;
-    while(ss >> tmp)
-        dice_colors.push_back(convert_to_index(tmp));
+
+	std::vector<Color> dice_colors = get_color_index_vect(std::cin);    
     
     RollOfDice rd;
     for(auto color : dice_colors)
-        rd.push_back(_roll[color]);
-    
+        rd.push_back(_roll[convert_to_index(color)]);
+
     return rd;
 }
 
@@ -42,27 +31,26 @@ void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
         char answer;
         std::cout << "Would you like to score this roll? [y/n] ";
         std::cin >> answer;
+		std::cin.ignore(256, '\n');
         if(answer == 'n')
             return;
     }
     
     for (int i = 0; i < 2; ++i)
     {
-        std::string color;
+        Color color;
         int index;
         
         std::cout << "What row would you like to score the roll in? (enter color) ";
-        std::cin.ignore();
-        std::getline(std::cin, color);
-        
-        //TODO: implement loop here instead of clean function
-        clean(color);
+
+		color = get_color_index_vect(std::cin)[0];
         
         std::cout << "What column (index) do you want to score in?" << std::endl;
         std::cout << "(count from beginning of the chosen row) ";
         std::cin >> index;
+		std::cin.ignore(256, '\n');
         
-        if(d_ScoreSheet->score(_roll, convert_to_color(color), index-1))
+        if(d_ScoreSheet->score(_roll, color, index-1))
             return;
         
         else
@@ -78,50 +66,25 @@ void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
     d_active = false;
 
 }
-//TODO: Delete this
-void QwixxPlayer::printSS()
-{
-    std::cout << *d_ScoreSheet;
-}
-
-void QwixxPlayer::clean(std::string _str)
-{
-    //TODO: clean the string before processing, right now it juse crashes on bad input.
-    // str.erase(std::remove_if(str.begin(), str.end(), std::isalpha));
-    
-    //ALSO: make sure there are no duplicates (red, red)
-}
-
 
 //TODO: rework the RollOfDice to get by color instead of index
-int QwixxPlayer::convert_to_index(std::string _str)
+int QwixxPlayer::convert_to_index(Color _color)
 {
-    if(_str == "red")
-        return 0;
-    
-    else if(_str == "yellow")
-        return 1;
-    
-    else if(_str == "blue")
-        return 2;
-    
-    else
-        return 0;
-    
-}
+	if(_color == Color::WHITE)
+		return 0;
 
-Color QwixxPlayer::convert_to_color(std::string _str)
-{
-    if(_str == "red")
-        return Color::RED;
-    
-    else if(_str == "yellow")
-        return Color::YELLOW;
-    
-    else if(_str == "blue")
-        return Color::BLUE;
-    
+	else if(_color == Color::RED)
+		return 1;
+
+	else if(_color == Color::YELLOW)
+		return 2;
+
+	else if(_color == Color::GREEN)
+		return 3;
+
+	else if(_color == Color::BLUE)
+		return 4;
+
     else
-        return Color::WHITE;
-    
+        return 0;
 }

@@ -44,6 +44,7 @@ Color Player::convert_to_color(std::string _str)
 
 		else if(_str == "blue")
 			return Color::BLUE;
+		
 		else if(_str == "white")
 			return Color::WHITE;
 		else
