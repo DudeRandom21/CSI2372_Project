@@ -20,6 +20,7 @@ protected:
 public:
 	QwixxRow();
 	bool validate(int _index, RollOfDice roll);
+    virtual Color getColor() { return d_c; }
 };
 	
 
@@ -27,6 +28,7 @@ template<class rowType, const Color d_c>
 QwixxRow<rowType, d_c>::QwixxRow()
 {
     _locked = false;
+    
 	if ((d_c == Color::RED) || (d_c == Color::YELLOW))
         for (int i = 2; i < 13; i++) {
             d_row.push_back(i);

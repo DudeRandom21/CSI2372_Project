@@ -37,8 +37,17 @@ std::ostream& operator<<(std::ostream& _out, const Dice& _dice)
             _out << "green ";
             break;
         
-        case Color::WHITE:
-            _out << "white  ";
+        case Color::WHITE_1:
+            _out << "white-1  ";
+            break;
+            
+        case Color::WHITE_2:
+            _out << "white-2  ";
+            break;
+            
+        case Color::INVALID:
+            break;
+            
             
 	}
 
@@ -56,7 +65,7 @@ RollOfDice RollOfDice::roll()
 }
 
 //revise if inheritance is not permited
-RollOfDice RollOfDice::pair(int _index1, int _index2)
+RollOfDice RollOfDice::pair(const int _index1, const int _index2) const
 {
 	RollOfDice pairedRoll;
 	pairedRoll.push_back((*this)[_index1]);
@@ -65,7 +74,7 @@ RollOfDice RollOfDice::pair(int _index1, int _index2)
 	return pairedRoll;
 }
 
-RollOfDice::operator int()
+RollOfDice::operator int() const
 {
 	int total = 0;
 	for(auto die : *this)
@@ -79,7 +88,7 @@ std::ostream& operator<<(std::ostream& _out, const RollOfDice& _roll)
 	for(auto die : _roll)
 		_out << die << ", ";
 	
-	_out << std::endl;
+	_out << "Total: " << static_cast<int>(_roll) << std::endl;
 
 	return _out;
 }

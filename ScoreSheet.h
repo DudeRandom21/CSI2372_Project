@@ -33,6 +33,7 @@ public:
 	void addFailedThrow();
     void addLockedRow();
     bool getEndGameCond();
+    std::vector<Color> getUnlockedColorsVector();
 	
 	friend std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS);
 };
