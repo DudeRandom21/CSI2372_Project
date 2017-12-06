@@ -81,25 +81,8 @@ bool QwixxScoreSheet::operator!()
 	if (ScoreSheet::operator!())
 		return true;
 
-	int filled_rows = 0;
-
-	for (int i = 0; i < 3; ++i)
-	{
-		int filled_cells = 0;
-		for (int j = 0; j < 11; ++j)
-		{
-			if ((*d_scoreSheetRows[i])[j] > 0)
-				++filled_cells;
-		}
-		if (filled_cells == 6)
-			++filled_rows;
-	}
-
-	if (filled_rows >= 2)
-		return true;
-
-	//if no condition is met the game is not over
-	return false;
+	//checking for locked Rows
+    return (d_lockedRows >= 2);
 }
 
 Row& QwixxScoreSheet::operator[](Color _color)

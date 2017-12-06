@@ -18,7 +18,7 @@ protected:
 	int d_points;
 
 	std::vector<Row*> d_scoreSheetRows;
-	
+
 	virtual bool validate(RollOfDice _dice, Color _color, int _pos = -1) = 0;
 	virtual int calcTotal() = 0;
 	virtual Row& operator[](Color _color) = 0;
@@ -32,7 +32,6 @@ public:
 	virtual bool operator!();
 	void addFailedThrow();
     void addLockedRow();
-    bool getEndGameCond();
 	
 	friend std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS);
 };

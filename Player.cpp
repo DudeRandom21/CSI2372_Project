@@ -2,8 +2,9 @@
 
 Player::Player(ScoreSheet *_ss) : d_ScoreSheet(_ss) {}
 
-bool Player::getEndCond(){
-    return d_ScoreSheet->getEndGameCond();
+bool Player::operator!()
+{
+	return !*d_ScoreSheet;
 }
 
 std::vector<Color> Player::get_color_index_vect(std::istream& _in)

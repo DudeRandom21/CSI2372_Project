@@ -83,8 +83,8 @@ int main(int argc, char const *argv[])
 			}
 		}
         
-        for(auto active_player : players){
-            contGame = active_player->getEndCond();
+        for(auto player : players){
+            contGame = contGame && !*player;
         }
         
 	}

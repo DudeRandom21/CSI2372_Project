@@ -21,8 +21,8 @@ public:
 	Player(ScoreSheet *_ss);
 	virtual ~Player() = default;
 	virtual RollOfDice inputBeforeRoll(RollOfDice& _roll) = 0;
-    bool getEndCond(); //TODO: Convert this to operator!
 	virtual void inputAfterRoll(RollOfDice& _roll) = 0;	
+    bool operator!();
 };
 
 #endif

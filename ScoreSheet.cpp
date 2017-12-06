@@ -53,7 +53,3 @@ std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS)
 
 	return _out;
 }
-
-bool ScoreSheet::getEndGameCond(){
-    return ((d_lockedRows >= 2) && (d_failedThrows >= 4));
-}
