@@ -96,5 +96,7 @@ Color randomColor()
 		return Color::YELLOW;
 		case 2:
 		return Color::BLUE;
+        default:
+            return Color::WHITE;
 	}
 }

@@ -14,6 +14,7 @@ class ScoreSheet
 protected:
 	std::string d_name;
 	int d_failedThrows;
+    int d_lockedRows;
 	int d_points;
 
 	std::vector<Row*> d_scoreSheetRows;
@@ -30,6 +31,8 @@ public:
 	int setTotal();
 	virtual bool operator!();
 	void addFailedThrow();
+    void addLockedRow();
+    bool getEndGameCond();
 	
 	friend std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS);
 };

@@ -22,6 +22,8 @@ public:
 	virtual ~QwixxPlayer();
 	virtual RollOfDice inputBeforeRoll(RollOfDice& _roll);
 	virtual void inputAfterRoll(RollOfDice& _roll);
+    
+    virtual void printSS();
 };
 
 #endif

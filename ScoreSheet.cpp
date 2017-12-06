@@ -2,7 +2,7 @@
 
 
 // Class Scoresheet
-ScoreSheet::ScoreSheet(std::string _name) : d_name(_name), d_failedThrows(0), d_points(0) {}
+ScoreSheet::ScoreSheet(std::string _name) : d_name(_name), d_failedThrows(0), d_lockedRows(0), d_points(0) {}
 
 bool ScoreSheet::score(RollOfDice _dice, Color _color, int _pos)
 {
@@ -31,6 +31,8 @@ bool ScoreSheet::operator!()
 
 void ScoreSheet::addFailedThrow() {++d_failedThrows;}
 
+void ScoreSheet::addLockedRow() { ++d_lockedRows; }
+
 std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS)
 {
 	_out << "Player name: " << _sS.d_name << "\t\t   Points: " << _sS.d_points << std::endl;
@@ -50,4 +52,8 @@ std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS)
 	_out << std::endl;
 
 	return _out;
+}
+
+bool ScoreSheet::getEndGameCond(){
+    return ((d_lockedRows > 1) && (d_failedThrows > 4));
 }

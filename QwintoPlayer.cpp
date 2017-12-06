@@ -105,6 +105,10 @@ int QwintoPlayer::convert_to_index(std::string _str)
 
 		else if(_str == "blue")
 			return 2;
+    
+        else
+            return 0;
+        
 }
 
 Color QwintoPlayer::convert_to_color(std::string _str)
@@ -117,4 +121,7 @@ Color QwintoPlayer::convert_to_color(std::string _str)
 
 		else if(_str == "blue")
 			return Color::BLUE;
+    
+        else
+            return Color::WHITE;
 }

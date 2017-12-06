@@ -52,6 +52,41 @@ void QwixxRow<std::list<int>, Color::BLUE>::print(std::ostream& _out) const
 	_out << '%' << std::endl;
 }
 
-// Specialized [] operator based on row type (vector or list)
+
+//template<>
+//int & QwixxRow<std::vector<int>, Color::RED>::operator[](int _index)
+//{
+//    auto iter = d_row.begin();
+//    std::advance(iter, _index);
+//    auto & x = *iter;
+//    return x;
+//}
+//
+//template<>
+//int & QwixxRow<std::vector<int>, Color::YELLOW>::operator[](int _index)
+//{
+//    auto iter = d_row.begin();
+//    std::advance(iter, _index);
+//    auto & x = *iter;
+//    return x;
+//}
+//
+//template<>
+//int & QwixxRow<std::list<int>, Color::GREEN>::operator[](int _index)
+//{
+//    auto iter = d_row.begin();
+//    std::advance(iter, _index);
+//    auto & x = *iter;
+//    return x;
+//}
+//
+//template<>
+//int & QwixxRow<std::list<int>, Color::BLUE>::operator[](int _index)
+//{
+//    auto iter = d_row.begin();
+//    std::advance(iter, _index);
+//    auto & x = *iter;
+//    return x;
+//}
 
 

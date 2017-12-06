@@ -55,22 +55,22 @@ int main(int argc, char const *argv[])
 		rd.push_back(Dice(Color::BLUE));
 	}
 
-//TODO: uncomment this
-	// // Qwixx Game
-	// else if (gameVers == 2)
-	// {
-	// 	for (auto name : playerNames) {
-	// 		players.push_back(QwixxPlayer(name));
-	// 	}
-	// 	rd.push_back(Dice(Color::WHITE));
-	// 	rd.push_back(Dice(Color::WHITE));
-	// 	rd.push_back(Dice(Color::RED));
-	// 	rd.push_back(Dice(Color::YELLOW));
-	// 	rd.push_back(Dice(Color::GREEN));
-	// 	rd.push_back(Dice(Color::BLUE));
-	// }
-	
-	while (true) { // TODO End condition?
+	 // Qwixx Game
+	 else if (gameVers == 2)
+	 {
+	 	for (auto name : playerNames) {
+	 		players.push_back(new QwixxPlayer(name));
+	 	}
+	 	rd.push_back(Dice(Color::WHITE));
+	 	rd.push_back(Dice(Color::WHITE));
+	 	rd.push_back(Dice(Color::RED));
+	 	rd.push_back(Dice(Color::YELLOW));
+	 	rd.push_back(Dice(Color::GREEN));
+	 	rd.push_back(Dice(Color::BLUE));
+	 }
+    bool contGame = true;
+	while (contGame) {
+        
 		for(auto active_player : players)
 		{
 			RollOfDice current_roll = active_player->inputBeforeRoll(rd);
@@ -79,6 +79,11 @@ int main(int argc, char const *argv[])
 				player->inputAfterRoll(current_roll);
 			}
 		}
+        
+        for(auto active_player : players){
+            contGame = active_player->getEndCond();
+        }
+        
 	}
 
 

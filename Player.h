@@ -20,7 +20,8 @@ public:
 	Player(ScoreSheet *_ss);
 	virtual ~Player() = default;
 	virtual RollOfDice inputBeforeRoll(RollOfDice& _roll) = 0;
-	virtual void inputAfterRoll(RollOfDice& _roll) = 0;	
+	virtual void inputAfterRoll(RollOfDice& _roll) = 0;
+    bool getEndCond();
 
 	//TODO: Delete this
 	virtual void printSS() = 0;

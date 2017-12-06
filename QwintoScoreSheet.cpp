@@ -19,7 +19,7 @@ QwintoScoreSheet::~QwintoScoreSheet()
 
 bool QwintoScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
 {
-	bool rowValidate;
+	bool rowValidate = false;
 	int red, yellow, blue;
 	switch (_color)
 	{
@@ -131,5 +131,12 @@ Row& QwintoScoreSheet::operator[](Color _color)
 
 		case Color::BLUE :
 			return *d_scoreSheetRows[2];
+            
+        case Color::GREEN :
+            return *d_scoreSheetRows[0];
+            
+        case Color::WHITE :
+            return *d_scoreSheetRows[0];
+            
 	}
 }
