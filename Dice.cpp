@@ -22,14 +22,24 @@ std::ostream& operator<<(std::ostream& _out, const Dice& _dice)
 	switch(_dice.d_color)
 	{
 		case Color::RED:
-		_out << "red ";
-		break;
+            _out << "red ";
+            break;
+            
 		case Color::YELLOW:
-		_out << "yellow ";
-		break;
+            _out << "yellow ";
+            break;
+            
 		case Color::BLUE:
-		_out << "blue ";
-		break;
+            _out << "blue ";
+            break;
+            
+        case Color::GREEN:
+            _out << "green ";
+            break;
+        
+        case Color::WHITE:
+            _out << "white  ";
+            
 	}
 
 	_out << _dice.d_face;

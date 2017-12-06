@@ -26,18 +26,14 @@ public:
 template<class rowType, const Color d_c>
 QwixxRow<rowType, d_c>::QwixxRow()
 {
-	int index = 0;
+    _locked = false;
 	if ((d_c == Color::RED) || (d_c == Color::YELLOW))
         for (int i = 2; i < 13; i++) {
-            d_row.assign(index, i);
-            //(*this)[index] = i;
-			index++;
+            d_row.push_back(i);
 		}
 	if ((d_c == Color::GREEN) || (d_c == Color::BLUE))
 		for (int i = 12; i > 1; i--) {
-            d_row.assign(index, i);
-            //(*this)[index] = i;
-			index++;
+            d_row.push_back(i);
 		}
 }
 
@@ -72,7 +68,8 @@ bool QwixxRow<rowType, d_c>::validate(int _index, RollOfDice _roll)
 	}
 
 	if (playedBoxCount > 5)
-		return false;
+        this->_locked = true;
+        return false;
 
 	return true;
 }

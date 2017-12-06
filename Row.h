@@ -13,7 +13,7 @@ class Row
 
 protected:
     virtual void print(std::ostream& _out) const = 0;
-
+    bool _locked;
     void printNumber(std::ostream& _out, int _value) const;
 
 public:

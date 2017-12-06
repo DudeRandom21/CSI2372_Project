@@ -2,91 +2,53 @@
 
 //defining functions from QwixxRow template
 
-
 template <>
 void QwixxRow<std::vector<int>, Color::RED>::print(std::ostream& _out) const
 {
-	_out << "Red           ";
+	_out << "Red     ";
 	for (int i = 0; i < 11; ++i)
 	{
-		_out << (((i == 1) || (i == 2) || (i == 5) || (i == 6)) ? '%' : '|'); //this line decides which seperator to place
+		_out << '|';
 		printNumber(_out, (*this)[i]);
 	}
-	_out << '|' << std::endl;
+    _out << '|' << ' ' << ((this->_locked) ? "L" : "U") << '|' << std::endl;
 }
 
 
 template <>
 void QwixxRow<std::vector<int>, Color::YELLOW>::print(std::ostream& _out) const
 {
-	_out << "Yellow     ";
-	for (int i = 0; i < 11; ++i)
-	{
-		_out << (((i == 7) || (i == 8)) ? '%' : '|'); //this line decides which seperator to place
-		printNumber(_out, (*this)[i]);
-	}
-	_out << '|' << std::endl;
+	_out << "Yellow  ";
+    for (int i = 0; i < 11; ++i)
+    {
+        _out << '|';
+        printNumber(_out, (*this)[i]);
+    }
+    _out << '|' << ' ' << ((this->_locked) ? "L" : "U") << '|' << std::endl;
 }
 
 template <>
 void QwixxRow<std::list<int>, Color::GREEN>::print(std::ostream& _out) const
 {
-	_out << "Green    ";
-	for (int i = 0; i < 11; ++i)
-	{
-		_out << (((i == 2) || (i == 3) || (i == 9)) ? '%' : '|'); //this line decides which seperator to place
-		printNumber(_out, (*this)[i]);
-	}
-	_out << '%' << std::endl;
+	_out << "Green   ";
+    for (int i = 0; i < 11; ++i)
+    {
+        _out << '|';
+        printNumber(_out, (*this)[i]);
+    }
+    _out << '|' << ' ' << ((this->_locked) ? "L" : "U") << '|' << std::endl;
 }
 
 template <>
 void QwixxRow<std::list<int>, Color::BLUE>::print(std::ostream& _out) const
 {
 	_out << "Blue    ";
-	for (int i = 0; i < 11; ++i)
-	{
-		_out << (((i == 2) || (i == 3) || (i == 9)) ? '%' : '|'); //this line decides which seperator to place
-		printNumber(_out, (*this)[i]);
-	}
-	_out << '%' << std::endl;
+    for (int i = 0; i < 11; ++i)
+    {
+        _out << '|';
+        printNumber(_out, (*this)[i]);
+    }
+    _out << '|' << ' ' << ((this->_locked) ? "L" : "U") << '|' << std::endl;
 }
-
-
-//template<>
-//int & QwixxRow<std::vector<int>, Color::RED>::operator[](int _index)
-//{
-//    auto iter = d_row.begin();
-//    std::advance(iter, _index);
-//    auto & x = *iter;
-//    return x;
-//}
-//
-//template<>
-//int & QwixxRow<std::vector<int>, Color::YELLOW>::operator[](int _index)
-//{
-//    auto iter = d_row.begin();
-//    std::advance(iter, _index);
-//    auto & x = *iter;
-//    return x;
-//}
-//
-//template<>
-//int & QwixxRow<std::list<int>, Color::GREEN>::operator[](int _index)
-//{
-//    auto iter = d_row.begin();
-//    std::advance(iter, _index);
-//    auto & x = *iter;
-//    return x;
-//}
-//
-//template<>
-//int & QwixxRow<std::list<int>, Color::BLUE>::operator[](int _index)
-//{
-//    auto iter = d_row.begin();
-//    std::advance(iter, _index);
-//    auto & x = *iter;
-//    return x;
-//}
 
 
