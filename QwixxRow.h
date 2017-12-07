@@ -20,13 +20,15 @@ protected:
 public:
 	QwixxRow();
 	bool validate(int _index, RollOfDice roll);
+    virtual Color getColor() { return d_c; }
 };
-	
+
 
 template<class rowType, const Color d_c>
 QwixxRow<rowType, d_c>::QwixxRow()
 {
     _locked = false;
+    
 	if ((d_c == Color::RED) || (d_c == Color::YELLOW))
         for (int i = 2; i < 13; i++) {
             d_row.push_back(i);
@@ -44,7 +46,7 @@ bool QwixxRow<rowType, d_c>::validate(int _index, RollOfDice _roll)
 	if (_index < 0 || _index > 10)
 		return false;
 
-	if ((*this)[_index] != 0)
+	if ((*this)[_index] == -1)
 		return false;
 
 	//checking if _roll has a dice of the selected color
@@ -60,16 +62,17 @@ bool QwixxRow<rowType, d_c>::validate(int _index, RollOfDice _roll)
 	//checking if value is open for use
 	int playedBoxCount = 0;
 	for (int i = 0; i < d_row.size(); i++) {
-		if ((*this)[i] == 1) {
+		if ((*this)[i] == -1) {
 			playedBoxCount++;
 			if (i > _index)
 				return false;
 		}
 	}
 
-	if (playedBoxCount > 5)
+    if (playedBoxCount > 5){
         this->_locked = true;
         return false;
+    }
 
 	return true;
 }

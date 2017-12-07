@@ -19,6 +19,7 @@ public:
 	QwintoRow();
 	virtual int &operator[](int _index);
 	virtual bool validate(int _index, RollOfDice roll);
+    virtual Color getColor() { return d_c; }
 };
 
 
@@ -27,6 +28,7 @@ public:
 template<const Color d_c>
 QwintoRow<d_c>::QwintoRow()
 {
+    
 	if(d_c == Color::RED)
 		d_row[3] = -1;
 

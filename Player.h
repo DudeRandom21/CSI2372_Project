@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include "Dice.h"
 #include "ScoreSheet.h"
@@ -12,19 +13,16 @@ class Player
 protected:
 	bool d_active = false;
 	ScoreSheet *d_ScoreSheet;
-	virtual void clean(std::string _str) = 0;
-	virtual int convert_to_index(std::string _str) = 0;
-	virtual Color convert_to_color(std::string _str) = 0;
+	std::vector<Color> get_color_index_vect(std::istream& _in);
+	Color convert_to_color(std::string _str);
+	virtual int convert_to_index(Color _color) = 0;
 
 public:
 	Player(ScoreSheet *_ss);
 	virtual ~Player() = default;
 	virtual RollOfDice inputBeforeRoll(RollOfDice& _roll) = 0;
+    bool getEndCond(); //TODO: Convert this to operator!
 	virtual void inputAfterRoll(RollOfDice& _roll) = 0;
-    bool getEndCond();
-
-	//TODO: Delete this
-	virtual void printSS() = 0;
 };
 
 #endif

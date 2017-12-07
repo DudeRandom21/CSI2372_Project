@@ -8,25 +8,23 @@ RollOfDice QwixxPlayer::inputBeforeRoll(RollOfDice& _roll)
 {
     d_active = true;
     
-    std::cout << "Which dice would you like to roll?" << std::endl;
-    std::cout << "(Seperate each dice by a space ex: red blue): " <<std::endl;
+    std::vector<Color> dice_colors;
+    dice_colors.push_back(Color::WHITE_1);
+    dice_colors.push_back(Color::WHITE_2);
     
-    std::string str;
-    std::cin.ignore();
-    std::getline(std::cin, str);
-    clean(str);
-    
-    //converting input line into vector of dice colors
-    std::istringstream ss(str);
-    std::vector<int> dice_colors;
-    
-    std::string tmp;
-    while(ss >> tmp)
-        dice_colors.push_back(convert_to_index(tmp));
+    std::vector<Color> tmp = d_ScoreSheet->getUnlockedColorsVector();
+    for (auto c : tmp){
+        dice_colors.push_back(c);
+    }   
     
     RollOfDice rd;
     for(auto color : dice_colors)
-        rd.push_back(_roll[color]);
+        rd.push_back(_roll[convert_to_index(color)]);
+    rd.roll();
+    
+    std::cout << std::endl << std::endl << std::endl;
+    std::cout << "           " << "Rolling " << d_ScoreSheet->getName() << "'s Dice" << std::endl;
+    std::cout << std::endl << std::endl << std::endl;
     
     return rd;
 }
@@ -34,94 +32,193 @@ RollOfDice QwixxPlayer::inputBeforeRoll(RollOfDice& _roll)
 
 void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
 {
+    std::cout << std::endl << std::endl << std::endl;
+    std::cout << "                  " << d_ScoreSheet->getName() << std::endl;
+    std::cout << "-------------------------------------------" << std::endl;
     std::cout << _roll;
     std::cout << *d_ScoreSheet;
     
     if(!d_active)
     {
-        char answer;
-        std::cout << "Would you like to score this roll? [y/n] ";
-        std::cin >> answer;
-        if(answer == 'n')
-            return;
-    }
-    
-    for (int i = 0; i < 2; ++i)
-    {
-        std::string color;
         int index;
+        char answer;
         
-        std::cout << "What row would you like to score the roll in? (enter color) ";
-        std::cin.ignore();
-        std::getline(std::cin, color);
+        std::cout << std::endl;
+        std::cout << d_ScoreSheet->getName() << ", ";
+        std::cout << "Would you like to score the active player's white dice this roll? [y/n] " << std::endl;
+        std::cin >> answer;
+        std::cin.ignore(256, '\n');
         
-        //TODO: implement loop here instead of clean function
-        clean(color);
+        bool playWhite = true;
         
-        std::cout << "What column (index) do you want to score in?" << std::endl;
-        std::cout << "(count from beginning of the chosen row) ";
-        std::cin >> index;
+        if(answer == 'n')
+            playWhite = false;
         
-        if(d_ScoreSheet->score(_roll, convert_to_color(color), index-1))
-            return;
-        
-        else
-        {
-            std::cout << "That is not a valid location please try another" << std::endl;
-            if(d_active)
-                std::cout << "(last try before being marked as failed throw)" << std::endl;
+        if (playWhite){
+            
+            bool validMove = true;
+            
+            do {
+                std::cout << std::endl;
+                std::cout << "What row would like to play in?";
+                Color color = get_color_index_vect(std::cin)[0];
+                std::cin.ignore(256, '\n');
+                
+                RollOfDice whiteDice;
+                whiteDice.push_back(_roll[0]);
+                whiteDice.push_back(_roll[1]);
+                
+                int count = 0;
+                for (auto d : whiteDice){
+                    count += d.d_face;
+                }
+                
+                
+                
+                
+                index = 0; // TODO find a way to get the index from row given a color and a value
+                
+                if(d_ScoreSheet->score(_roll, color, count)){
+                    std::cout << _roll;
+                    std::cout << *d_ScoreSheet;
+                    return;
+                }
+                else
+                {
+                    std::cout << std::endl;
+                    std::cout << "That is not a valid location please try another" << std::endl;
+                    validMove = false;
+                }
+            } while (!validMove);
+            
         }
+        
     }
-    
-    if(d_active)
-        d_ScoreSheet->addFailedThrow();
-    d_active = false;
+    else if (d_active)
+    {
 
+        char answer;
+        
+        std::cout << std::endl;
+        std::cout << d_ScoreSheet->getName() << ", ";
+        std::cout << "Would you like to score your white dice this roll? [y/n] " << std::endl;
+        std::cin >> answer;
+        std::cin.ignore(256, '\n');
+        
+        bool scoreWhite = true;
+        
+        if(answer == 'n')
+            scoreWhite = false;
+        
+        if (scoreWhite){
+            
+            bool validMove = true;
+            
+            do {
+                std::cout << std::endl;
+                std::cout << "What row would like to play in?"  << std::endl;
+                Color color = get_color_index_vect(std::cin)[0];
+                std::cin.ignore(256, '\n');
+                
+                RollOfDice whiteDice;
+                whiteDice.push_back(_roll[0]);
+                whiteDice.push_back(_roll[1]);
+                
+                int count = 0;
+                for (auto d : whiteDice){
+                    count += d.d_face;
+                }
+                
+                if(d_ScoreSheet->score(_roll, color, count)){
+                    std::cout << _roll;
+                    std::cout << *d_ScoreSheet;
+                    //return;
+                }
+                
+                else
+                {
+                    std::cout << std::endl;
+                    std::cout << "That is not a valid location please try another" << std::endl;
+                    validMove = false;
+                }
+            } while (!validMove);
+            
+            
+        }
+        
+        
+        std::cout << std::endl;
+        std::cout << std::endl << "Would you like to score your colored dice? (y/n)" << std::endl;
+        bool scoreColored = true;
+        
+        std::cin >> answer;
+        std::cin.ignore(256, '\n');
+        
+        if(answer == 'n')
+            scoreColored = false;
+        
+        
+        
+        if(scoreColored){
+            Color color;
+            std::cout << std::endl;
+            std::cout << "What row would like to play in?" << std::endl;
+            color = get_color_index_vect(std::cin)[0];
+            
+            int num = -1;
+            std::cout << std::endl;
+            std::cout << "What number would you like to play?" << std::endl;
+            std::cin >> num;
+            std::cin.ignore(256, '\n');
+            
+            if(d_ScoreSheet->score(_roll, color, num)){
+                std::cout << std::endl << std::endl << std::endl;
+                std::cout << _roll;
+                std::cout << *d_ScoreSheet;
+                return;
+            }
+            else
+            {
+                std::cout << std::endl;
+                std::cout << "That is not a valid location please try another" << std::endl;
+                if(d_active)
+                    std::cout << std::endl;
+                    std::cout << "(last try before being marked as failed throw)" << std::endl;
+            }
+            
+        }
+        
+        if ( scoreWhite == false && scoreColored == false ){
+            d_ScoreSheet->addFailedThrow();
+        }
+        
+        d_active = false;
+    }
 }
-//TODO: Delete this
-void QwixxPlayer::printSS()
-{
-    std::cout << *d_ScoreSheet;
-}
-
-void QwixxPlayer::clean(std::string _str)
-{
-    //TODO: clean the string before processing, right now it juse crashes on bad input.
-    // str.erase(std::remove_if(str.begin(), str.end(), std::isalpha));
-    
-    //ALSO: make sure there are no duplicates (red, red)
-}
-
 
 //TODO: rework the RollOfDice to get by color instead of index
-int QwixxPlayer::convert_to_index(std::string _str)
+int QwixxPlayer::convert_to_index(Color _color)
 {
-    if(_str == "red")
+    if(_color == Color::RED)
         return 0;
     
-    else if(_str == "yellow")
+    else if(_color == Color::YELLOW)
         return 1;
     
-    else if(_str == "blue")
+    else if(_color == Color::GREEN)
         return 2;
     
-    else
-        return 0;
+    else if(_color == Color::BLUE)
+        return 3;
     
+    else if(_color == Color::WHITE_1)
+        return 4;
+    
+    else if(_color == Color::WHITE_2)
+        return 5;
+    
+    else
+        return -1;
 }
 
-Color QwixxPlayer::convert_to_color(std::string _str)
-{
-    if(_str == "red")
-        return Color::RED;
-    
-    else if(_str == "yellow")
-        return Color::YELLOW;
-    
-    else if(_str == "blue")
-        return Color::BLUE;
-    
-    else
-        return Color::WHITE;
-    
-}
+

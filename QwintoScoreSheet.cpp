@@ -132,11 +132,7 @@ Row& QwintoScoreSheet::operator[](Color _color)
 		case Color::BLUE :
 			return *d_scoreSheetRows[2];
             
-        case Color::GREEN :
+        default:
             return *d_scoreSheetRows[0];
-            
-        case Color::WHITE :
-            return *d_scoreSheetRows[0];
-            
 	}
 }

@@ -26,21 +26,24 @@ int main(int argc, char const *argv[])
 	//TODO: loop back if input is invalid
 	int gameVers = 0;
 	std::cin >> gameVers;
+	std::cin.ignore(256, '\n');
 
 	int playerNum = 0;
 	std::cout << "How many players?" << std::endl;
 	std::cin >> playerNum;
+	std::cin.ignore(256, '\n');
 
 	std::vector<std::string> playerNames;
 	std::string name;
-
+    std::cout << std::endl;
 
 	for (int i = 0; i < playerNum; i++) {
 		std::cout << "Player " << i + 1 << " Name: " << std::flush;
 		std::cin >> name;
+		std::cin.ignore(256, '\n');
 		playerNames.push_back(name);
 	}
-
+    std::cout << std::endl;
 
 	players.reserve(playerNum);
 
@@ -61,12 +64,12 @@ int main(int argc, char const *argv[])
 	 	for (auto name : playerNames) {
 	 		players.push_back(new QwixxPlayer(name));
 	 	}
-	 	rd.push_back(Dice(Color::WHITE));
-	 	rd.push_back(Dice(Color::WHITE));
 	 	rd.push_back(Dice(Color::RED));
 	 	rd.push_back(Dice(Color::YELLOW));
 	 	rd.push_back(Dice(Color::GREEN));
 	 	rd.push_back(Dice(Color::BLUE));
+	 	rd.push_back(Dice(Color::WHITE_1));
+	 	rd.push_back(Dice(Color::WHITE_2));
 	 }
     bool contGame = true;
 	while (contGame) {
@@ -76,12 +79,14 @@ int main(int argc, char const *argv[])
 			RollOfDice current_roll = active_player->inputBeforeRoll(rd);
 			for(auto player : players)
 			{
-				player->inputAfterRoll(current_roll);
+                player->inputAfterRoll(current_roll);
 			}
 		}
         
         for(auto active_player : players){
-            contGame = active_player->getEndCond();
+            bool active;
+            active = active_player->getEndCond();
+            contGame = contGame * active;
         }
         
 	}

@@ -19,30 +19,43 @@ int Dice::roll()
 
 std::ostream& operator<<(std::ostream& _out, const Dice& _dice)
 {
+    _out << '\t' << '\t' << '\t' << '\t';
+    
 	switch(_dice.d_color)
 	{
 		case Color::RED:
-            _out << "red ";
+            _out << "Red ";
             break;
             
 		case Color::YELLOW:
-            _out << "yellow ";
+            _out << "Yellow";
             break;
             
 		case Color::BLUE:
-            _out << "blue ";
+            _out << "Blue";
             break;
             
         case Color::GREEN:
-            _out << "green ";
+            _out << "Green";
             break;
         
-        case Color::WHITE:
-            _out << "white  ";
+        case Color::WHITE_1:
+            _out << "White-1";
+            break;
+            
+        case Color::WHITE_2:
+            _out << "White-2";
+            break;
+            
+        case Color::INVALID:
+            break;
+            
             
 	}
 
-	_out << _dice.d_face;
+    _out << '\t' << "|" << _dice.d_face << "|" << std::endl;
+    _out << '\t' << '\t' << '\t' << '\t';
+    _out << "------------";
 	return _out;
 }
 
@@ -56,7 +69,7 @@ RollOfDice RollOfDice::roll()
 }
 
 //revise if inheritance is not permited
-RollOfDice RollOfDice::pair(int _index1, int _index2)
+RollOfDice RollOfDice::pair(const int _index1, const int _index2) const
 {
 	RollOfDice pairedRoll;
 	pairedRoll.push_back((*this)[_index1]);
@@ -65,7 +78,7 @@ RollOfDice RollOfDice::pair(int _index1, int _index2)
 	return pairedRoll;
 }
 
-RollOfDice::operator int()
+RollOfDice::operator int() const
 {
 	int total = 0;
 	for(auto die : *this)
@@ -75,11 +88,14 @@ RollOfDice::operator int()
 
 std::ostream& operator<<(std::ostream& _out, const RollOfDice& _roll)
 {
-	_out << "Roll: ";
+    _out << "Roll: " << std::endl;
+    _out << '\t' << '\t' << '\t' << '\t';
+    _out << "------------" << std::endl;
 	for(auto die : _roll)
-		_out << die << ", ";
+        _out << die << std::endl;
 	
-	_out << std::endl;
+	_out << '\t' << '\t' << '\t' << '\t' << "Total: " << static_cast<int>(_roll) << std::endl;
+    _out << std::endl;
 
 	return _out;
 }

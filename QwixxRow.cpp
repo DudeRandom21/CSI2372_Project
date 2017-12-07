@@ -1,6 +1,5 @@
 #include "QwixxRow.h"
 
-//defining functions from QwixxRow template
 
 template <>
 void QwixxRow<std::vector<int>, Color::RED>::print(std::ostream& _out) const

@@ -17,6 +17,17 @@ bool ScoreSheet::score(RollOfDice _dice, Color _color, int _pos)
     return false;
 }
 
+std::vector<Color> ScoreSheet::getUnlockedColorsVector(){
+    std::vector<Color> lr;
+    for (auto row : d_scoreSheetRows){
+        if (!row->getLockedStatus()){
+            lr.push_back(row->getColor());
+        }
+    }
+    return lr;
+}
+
+
 int ScoreSheet::setTotal(){
     d_points = calcTotal();
     return d_points;
@@ -55,5 +66,5 @@ std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS)
 }
 
 bool ScoreSheet::getEndGameCond(){
-    return ((d_lockedRows >= 2) && (d_failedThrows >= 4));
+    return !((d_lockedRows >= 2) && (d_failedThrows >= 4));
 }
