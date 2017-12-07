@@ -35,7 +35,7 @@ int main(int argc, char const *argv[])
 
 	std::vector<std::string> playerNames;
 	std::string name;
-
+    std::cout << std::endl;
 
 	for (int i = 0; i < playerNum; i++) {
 		std::cout << "Player " << i + 1 << " Name: " << std::flush;
@@ -43,7 +43,7 @@ int main(int argc, char const *argv[])
 		std::cin.ignore(256, '\n');
 		playerNames.push_back(name);
 	}
-
+    std::cout << std::endl;
 
 	players.reserve(playerNum);
 
@@ -68,8 +68,8 @@ int main(int argc, char const *argv[])
 	 	rd.push_back(Dice(Color::YELLOW));
 	 	rd.push_back(Dice(Color::GREEN));
 	 	rd.push_back(Dice(Color::BLUE));
-	 	rd.push_back(Dice(Color::WHITE));
-	 	rd.push_back(Dice(Color::WHITE));
+	 	rd.push_back(Dice(Color::WHITE_1));
+	 	rd.push_back(Dice(Color::WHITE_2));
 	 }
     bool endCond = false;
 	while (!endCond) {
@@ -79,14 +79,13 @@ int main(int argc, char const *argv[])
 			RollOfDice current_roll = active_player->inputBeforeRoll(rd);
 			for(auto player : players)
 			{
-				player->inputAfterRoll(current_roll);
+                player->inputAfterRoll(current_roll);
 			}
 		}
         
         for(auto player : players){
             endCond = endCond || !*player;
-        }
-        
+        }        
 	}
 
 

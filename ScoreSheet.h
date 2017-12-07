@@ -27,12 +27,16 @@ public:
 
 	ScoreSheet(std::string _name);
 	virtual ~ScoreSheet() = default;
-	bool score(RollOfDice _dice, Color _color, int _pos = -1);
+	virtual bool score(RollOfDice _dice, Color _color, int _pos = -1);
 	int setTotal();
 	virtual bool operator!();
 	void addFailedThrow();
     void addLockedRow();
-	
+
+//TODO go over this and figure out what it's for
+    std::vector<Color> getUnlockedColorsVector();
+    std::string getName() { return d_name; }
+    
 	friend std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS);
 };
 

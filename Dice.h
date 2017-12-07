@@ -5,9 +5,10 @@
 #include <vector>
 #include <random>
 #include <list>
+#include <ctime>
 
 
-enum Color {INVALID, RED, YELLOW, GREEN, BLUE, WHITE};
+enum Color {INVALID, RED, YELLOW, GREEN, BLUE, WHITE_1, WHITE_2};
 
 struct RandomDice
 {
