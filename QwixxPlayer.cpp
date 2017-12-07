@@ -29,7 +29,7 @@ RollOfDice QwixxPlayer::inputBeforeRoll(RollOfDice& _roll)
     return rd;
 }
 
-
+//TODO if you have time combine these to have less duplicate code
 void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
 {
     std::cout << std::endl << std::endl << std::endl;
@@ -49,12 +49,7 @@ void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
         std::cin >> answer;
         std::cin.ignore(256, '\n');
         
-        bool playWhite = true;
-        
-        if(answer == 'n')
-            playWhite = false;
-        
-        if (playWhite){
+        if (answer == 'y'){
             
             bool validMove = true;
             
@@ -95,6 +90,7 @@ void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
         }
         
     }
+
     else if (d_active)
     {
 
@@ -119,7 +115,6 @@ void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
                 std::cout << std::endl;
                 std::cout << "What row would like to play in?"  << std::endl;
                 Color color = get_color_index_vect(std::cin)[0];
-                std::cin.ignore(256, '\n');
                 
                 RollOfDice whiteDice;
                 whiteDice.push_back(_roll[0]);
@@ -149,7 +144,7 @@ void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
         
         
         std::cout << std::endl;
-        std::cout << std::endl << "Would you like to score your colored dice? (y/n)" << std::endl;
+        std::cout << std::endl << "Would you like to score your colored dice? [y/n]" << std::endl;
         bool scoreColored = true;
         
         std::cin >> answer;
@@ -197,7 +192,6 @@ void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
     }
 }
 
-//TODO: rework the RollOfDice to get by color instead of index
 int QwixxPlayer::convert_to_index(Color _color)
 {
     if(_color == Color::RED)

@@ -14,6 +14,8 @@
 #include "QwixxRow.h"
 #include "QwixxScoreSheet.h"
 
+
+//TODO go back and add all the consts you can!
 int main(int argc, char const *argv[])
 {
 	std::vector<Player*> players;

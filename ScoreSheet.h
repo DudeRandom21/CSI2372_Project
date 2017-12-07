@@ -31,10 +31,10 @@ public:
 	int setTotal();
 	virtual bool operator!();
 	void addFailedThrow();
+    
+    //TODO make this part of the score function
     void addLockedRow();
-
-//TODO go over this and figure out what it's for
-    std::vector<Color> getUnlockedColorsVector();
+    virtual std::vector<Color> getUnlockedColorsVector();
     std::string getName() { return d_name; }
     
 	friend std::ostream& operator<<(std::ostream& _out, const ScoreSheet& _sS);

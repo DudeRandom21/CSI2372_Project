@@ -67,7 +67,6 @@ void QwintoPlayer::inputAfterRoll(RollOfDice& _roll)
 
 }
 
-//TODO: rework the RollOfDice to get by color instead of index
 int QwintoPlayer::convert_to_index(Color _color)
 {
 	if(_color == Color::RED)

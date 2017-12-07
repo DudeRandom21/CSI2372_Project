@@ -18,13 +18,8 @@ bool ScoreSheet::score(RollOfDice _dice, Color _color, int _pos)
 }
 
 std::vector<Color> ScoreSheet::getUnlockedColorsVector(){
-    std::vector<Color> lr;
-    for (auto row : d_scoreSheetRows){
-        if (!row->getLockedStatus()){
-            lr.push_back(row->getColor());
-        }
-    }
-    return lr;
+	//TODO fix this
+    
 }
 
 

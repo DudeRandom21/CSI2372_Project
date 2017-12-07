@@ -23,9 +23,6 @@ public:
 	virtual RollOfDice inputBeforeRoll(RollOfDice& _roll) = 0;
 	virtual void inputAfterRoll(RollOfDice& _roll) = 0;	
     bool operator!();
-
-    bool getEndCond(); //TODO: Remove relics of this;
-
 };
 
 #endif

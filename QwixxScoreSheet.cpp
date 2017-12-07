@@ -48,65 +48,21 @@ int QwixxScoreSheet::calcTotal()
 	int current_score = 0;
 	current_score -= d_failedThrows * 5;
 
-	for (int i = 0; i < 4; ++i){
+	for (int i = 0; i < 4; ++i)
+	{
 		int filled_cells = 0;
-		for (int j = 0; j < 11; ++j){
-			if((*d_scoreSheetRows[i])[j] == -1){
+		for (int j = 0; j < 11; ++j)
+		{
+			if((*d_scoreSheetRows[i])[j] == -1)
+			{
 				++filled_cells;
 			}
 		}
 
-		switch(filled_cells){
-            case(0):
-                break;
-                
-			case (1):
-                current_score += 1;
-                break;
-                
-			case (2):
-                current_score += 3;
-                break;
-                
-			case (3):
-                current_score += 6;
-                break;
-                
-			case (4):
-                current_score += 10;
-                break;
-                
-			case (5):
-                current_score += 15;
-                break;
-                
-			case (6):
-                current_score += 21;
-                break;
-                
-			case (7):
-                current_score += 28;
-                break;
-                
-			case (8):
-                current_score += 36;
-                break;
-                
-			case (9):
-                current_score += 45;
-                break;
-                
-			case (10):
-                current_score += 55;
-                break;
-                
-			case (11):
-                current_score += 66;
-                break;
-                
-			case (12):
-                current_score += 78;
-                break;
+		//sum of filled cells count
+		for (int j = 0; j < filled_cells; ++j)
+		{
+			current_score += j;
 		}
 	}
 	return current_score;
@@ -162,21 +118,12 @@ bool QwixxScoreSheet::score(RollOfDice _playDice, Color _rowColor, int _val){
     return false;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+std::vector<Color> QwixxScoreSheet::getUnlockedColorsVector(){
+    std::vector<Color> lr;
+    for (auto row : d_scoreSheetRows){
+        if (!row->getLockedStatus()){
+            lr.push_back(row->getColor());
+        }
+    }
+    return lr;
+}
