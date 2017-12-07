@@ -1,5 +1,3 @@
-#include <ctime>
-
 #include "Dice.h"
 
 std::uniform_int_distribution<int> RandomDice::die{1,6};
@@ -19,7 +17,7 @@ int Dice::roll()
 
 std::ostream& operator<<(std::ostream& _out, const Dice& _dice)
 {
-    _out << '\t' << '\t' << '\t' << '\t';
+    _out << "\t\t\t\t";
     
 	switch(_dice.d_color)
 	{
@@ -53,8 +51,8 @@ std::ostream& operator<<(std::ostream& _out, const Dice& _dice)
             
 	}
 
-    _out << '\t' << "|" << _dice.d_face << "|" << std::endl;
-    _out << '\t' << '\t' << '\t' << '\t';
+    _out << "\t|" << _dice.d_face << "|" << std::endl;
+    _out << "\t\t\t\t";
     _out << "------------";
 	return _out;
 }
@@ -89,12 +87,12 @@ RollOfDice::operator int() const
 std::ostream& operator<<(std::ostream& _out, const RollOfDice& _roll)
 {
     _out << "Roll: " << std::endl;
-    _out << '\t' << '\t' << '\t' << '\t';
+    _out << "\t\t\t\t";
     _out << "------------" << std::endl;
 	for(auto die : _roll)
         _out << die << std::endl;
 	
-	_out << '\t' << '\t' << '\t' << '\t' << "Total: " << static_cast<int>(_roll) << std::endl;
+	_out << "\t\t\t\t" << "Total: " << static_cast<int>(_roll) << std::endl;
     _out << std::endl;
 
 	return _out;
