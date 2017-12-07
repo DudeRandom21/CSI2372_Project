@@ -1,3 +1,5 @@
+#ifndef TESTING
+
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -15,7 +17,6 @@
 #include "QwixxScoreSheet.h"
 
 
-//TODO go back and add all the consts you can!
 int main(int argc, char const *argv[])
 {
 	std::vector<Player*> players;
@@ -76,7 +77,6 @@ int main(int argc, char const *argv[])
     bool endCond = false;
 	while (!endCond) {
         
-        //TODO get main loop to circle back instead of restart for non active players
 		for(auto active_player : players)
 		{
 			RollOfDice current_roll = active_player->inputBeforeRoll(rd);
@@ -86,12 +86,28 @@ int main(int argc, char const *argv[])
 			}
 		}
         
+        //Checking end Condition
         for(auto player : players){
             endCond = endCond || !*player;
         }        
 	}
 
+	//print ScoreSheets and Display Winner
+	int max = 0, score;
+	std::string winner;
+	for(auto player : players)
+	{
+		score = player->printScoreSheet();
+		if (score > max)
+		{
+			max = score;
+			winner = player->getName();
+		}
+	}
 
+	std::cout << "Winner :" << winner << '!' << std::endl;
+
+	//delete players
 	for(auto player : players)
 		delete player;
 
@@ -117,3 +133,5 @@ int main(int argc, char const *argv[])
 	
 	return 0;
 }
+
+#endif

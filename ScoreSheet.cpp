@@ -4,22 +4,14 @@
 // Class Scoresheet
 ScoreSheet::ScoreSheet(std::string _name) : d_name(_name), d_failedThrows(0), d_lockedRows(0), d_points(0) {}
 
-bool ScoreSheet::score(RollOfDice _dice, Color _color, int _pos)
-{
-    if(validate( _dice, _color, _pos ))
-    {
-    	Row& row = (*this)[_color];
-    	row[_pos] = _dice;  // this is probably going to have to be changed when we implement Qwixx because _pos = -1
-    	setTotal();
-    	return true;
+std::vector<Color> ScoreSheet::getUnlockedColorsVector() const {
+    std::vector<Color> lr;
+    for (auto row : d_scoreSheetRows){
+        if (!row->getLockedStatus()){
+            lr.push_back(row->getColor());
+        }
     }
-
-    return false;
-}
-
-std::vector<Color> ScoreSheet::getUnlockedColorsVector(){
-	//TODO fix this
-    
+    return lr;
 }
 
 
@@ -28,7 +20,7 @@ int ScoreSheet::setTotal(){
     return d_points;
 }
 
-bool ScoreSheet::operator!()
+bool ScoreSheet::operator!() const
 {
 	if(d_failedThrows >= 4)
 		return true;

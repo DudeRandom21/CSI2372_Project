@@ -1,6 +1,6 @@
 #include "QwintoScoreSheet.h"
 
-QwintoScoreSheet::QwintoScoreSheet(std::string _name) : ScoreSheet(_name)
+QwintoScoreSheet::QwintoScoreSheet(const std::string _name) : ScoreSheet(_name)
 {
 	d_scoreSheetRows.reserve(3);
 
@@ -17,7 +17,21 @@ QwintoScoreSheet::~QwintoScoreSheet()
 	}
 }
 
-bool QwintoScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
+bool QwintoScoreSheet::score(RollOfDice _dice, Color _color, int _pos)
+{
+    if(validate( _dice, _color, _pos ))
+    {
+    	Row& row = (*this)[_color];
+    	row[_pos] = _dice;  // this is probably going to have to be changed when we implement Qwixx because _pos = -1
+    	setTotal();
+    	return true;
+    }
+
+    return false;
+}
+
+
+bool QwintoScoreSheet::validate(const RollOfDice _dice, const Color _color, const int _pos) const
 {
 	bool rowValidate = false;
 	int red, yellow, blue;
@@ -57,7 +71,7 @@ bool QwintoScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
 }
 
 
-int QwintoScoreSheet::calcTotal()
+int QwintoScoreSheet::calcTotal() const
 {
 	int current_score = 0;
 	current_score -= d_failedThrows * 5;
@@ -92,7 +106,7 @@ int QwintoScoreSheet::calcTotal()
 	return current_score;
 }
 
-bool QwintoScoreSheet::operator!()
+bool QwintoScoreSheet::operator!() const
 {
 	//checking for common fail conditions (failed throws)
 	if (ScoreSheet::operator!())
@@ -119,7 +133,7 @@ bool QwintoScoreSheet::operator!()
 	return false;
 }
 
-Row& QwintoScoreSheet::operator[](Color _color)
+Row& QwintoScoreSheet::operator[](const Color _color)
 {
 	switch(_color)
 	{

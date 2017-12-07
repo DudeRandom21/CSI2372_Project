@@ -9,20 +9,21 @@
 class QwixxScoreSheet : public ScoreSheet
 {
 
+	std::vector<Color> unlockedColorsVector;
 	//TODO get all the locked Row stuff in here
 
 protected:
-	virtual bool validate(RollOfDice _dice, Color _color, int _pos = -1);
-	virtual int calcTotal();
-	virtual Row& operator[](Color _color);
+	virtual bool validate(const RollOfDice _dice, const Color _color, const int _pos = -1) const;
+	virtual int calcTotal() const;
+	virtual Row& operator[](const Color _color);
     
 
 public:
-	QwixxScoreSheet(std::string _name);
+	QwixxScoreSheet(const std::string _name);
 	~QwixxScoreSheet();
     virtual bool score(RollOfDice _playDice, Color _rowColor, int _pos = -1);
-	virtual bool operator!();
-    virtual std::vector<Color> getUnlockedColorsVector();
+	virtual bool operator!() const;
+    virtual std::vector<Color> getUnlockedColorsVector() const;
 
 };
 

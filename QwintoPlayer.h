@@ -13,13 +13,13 @@
 class QwintoPlayer : public Player
 {
 protected:
-	virtual int convert_to_index(Color _color);
+	virtual int convert_to_index(const Color _color) const;
 
 public:
-	QwintoPlayer(std::string _name);
+	QwintoPlayer(const std::string _name);
 	virtual ~QwintoPlayer();
 	virtual RollOfDice inputBeforeRoll(RollOfDice& _roll);
-	virtual void inputAfterRoll(RollOfDice& _roll);
+	virtual void inputAfterRoll(const RollOfDice& _roll);
 };
 
 #endif

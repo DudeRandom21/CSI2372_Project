@@ -2,12 +2,12 @@
 
 Player::Player(ScoreSheet *_ss) : d_ScoreSheet(_ss) {}
 
-bool Player::operator!()
+bool Player::operator!() const
 {
 	return !*d_ScoreSheet;
 }
 
-std::vector<Color> Player::get_color_index_vect(std::istream& _in)
+std::vector<Color> Player::get_color_index_vect(std::istream& _in) const
 {
 	std::vector<Color> dice_colors;
 	while(dice_colors.size() < 1)
@@ -33,7 +33,7 @@ std::vector<Color> Player::get_color_index_vect(std::istream& _in)
 }
 
 
-Color Player::convert_to_color(std::string _str)
+Color Player::convert_to_color(const std::string _str) const
 {
 		if(_str == "red")
 			return Color::RED;
@@ -55,4 +55,15 @@ Color Player::convert_to_color(std::string _str)
     
 		else
 			return Color::INVALID;
+}
+
+int Player::printScoreSheet() const
+{
+	std::cout << *d_ScoreSheet;
+	return d_ScoreSheet->setTotal();
+}
+
+std::string Player::getName() const
+{
+	return d_ScoreSheet->getName();
 }

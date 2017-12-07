@@ -1,6 +1,6 @@
 #include "QwintoPlayer.h"
 
-QwintoPlayer::QwintoPlayer(std::string _name) : Player(new QwintoScoreSheet(_name)) {}
+QwintoPlayer::QwintoPlayer(const std::string _name) : Player(new QwintoScoreSheet(_name)) {}
 
 QwintoPlayer::~QwintoPlayer() {delete d_ScoreSheet;}
 
@@ -21,7 +21,7 @@ RollOfDice QwintoPlayer::inputBeforeRoll(RollOfDice& _roll)
 }
 
 
-void QwintoPlayer::inputAfterRoll(RollOfDice& _roll)
+void QwintoPlayer::inputAfterRoll(const RollOfDice& _roll)
 {
 	std::cout << _roll;
 	std::cout << *d_ScoreSheet;
@@ -67,7 +67,7 @@ void QwintoPlayer::inputAfterRoll(RollOfDice& _roll)
 
 }
 
-int QwintoPlayer::convert_to_index(Color _color)
+int QwintoPlayer::convert_to_index(const Color _color) const
 {
 	if(_color == Color::RED)
 		return 0;

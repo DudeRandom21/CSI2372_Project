@@ -18,7 +18,7 @@ protected:
 public:
 	QwintoRow();
 	virtual int &operator[](int _index);
-	virtual bool validate(int _index, RollOfDice roll);
+	virtual bool validate(const int _index, const RollOfDice roll);
     virtual Color getColor() { return d_c; }
 };
 
@@ -40,7 +40,7 @@ QwintoRow<d_c>::QwintoRow()
 }
 
 template <const Color d_c>
-bool QwintoRow<d_c>::validate(int _index, RollOfDice _roll)
+bool QwintoRow<d_c>::validate(const int _index, const RollOfDice _roll)
 {
 
 	if (_index < 0 || _index > 9)
@@ -76,7 +76,7 @@ bool QwintoRow<d_c>::validate(int _index, RollOfDice _roll)
 }
 
 template <const Color d_c>
-int& QwintoRow<d_c>::operator[](int _index)
+int& QwintoRow<d_c>::operator[](const int _index)
 {
 	return d_row[_index];
 }

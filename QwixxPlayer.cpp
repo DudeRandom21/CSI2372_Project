@@ -1,6 +1,6 @@
 #include "QwixxPlayer.h"
 
-QwixxPlayer::QwixxPlayer(std::string _name) : Player( new QwixxScoreSheet(_name) ) {}
+QwixxPlayer::QwixxPlayer(const std::string _name) : Player( new QwixxScoreSheet(_name) ) {}
 
 QwixxPlayer::~QwixxPlayer() { delete d_ScoreSheet; }
 
@@ -30,7 +30,7 @@ RollOfDice QwixxPlayer::inputBeforeRoll(RollOfDice& _roll)
 }
 
 //TODO if you have time combine these to have less duplicate code
-void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
+void QwixxPlayer::inputAfterRoll(const RollOfDice& _roll)
 {
     std::cout << std::endl << std::endl << std::endl;
     std::cout << "                  " << d_ScoreSheet->getName() << std::endl;
@@ -192,7 +192,7 @@ void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
     }
 }
 
-int QwixxPlayer::convert_to_index(Color _color)
+int QwixxPlayer::convert_to_index(const Color _color) const
 {
     if(_color == Color::RED)
         return 0;

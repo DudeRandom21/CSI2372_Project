@@ -14,13 +14,13 @@ class QwixxRow : public Row
 
 protected:
 	virtual void print(std::ostream& _out) const;
-    virtual int & operator[](const int _index);
-	const virtual int & operator[](const int _index) const;
 
 public:
 	QwixxRow();
-	bool validate(int _index, RollOfDice roll);
+	bool validate(const int _index, const RollOfDice roll);
     virtual Color getColor() { return d_c; }
+    virtual int & operator[](const int _index);
+	virtual const int & operator[](const int _index) const;
 };
 
 
@@ -40,7 +40,7 @@ QwixxRow<rowType, d_c>::QwixxRow()
 }
 
 template <typename rowType, const Color d_c>
-bool QwixxRow<rowType, d_c>::validate(int _index, RollOfDice _roll)
+bool QwixxRow<rowType, d_c>::validate(const int _index, const RollOfDice _roll)
 {
 
 	if (_index < 0 || _index > 10)

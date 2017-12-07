@@ -1,6 +1,6 @@
 #include "QwixxScoreSheet.h"
 
-QwixxScoreSheet::QwixxScoreSheet(std::string _name) : ScoreSheet(_name)
+QwixxScoreSheet::QwixxScoreSheet(const std::string _name) : ScoreSheet(_name)
 {
 	d_scoreSheetRows.reserve(4);
 
@@ -18,7 +18,7 @@ QwixxScoreSheet::~QwixxScoreSheet()
 	}
 }
 
-bool QwixxScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
+bool QwixxScoreSheet::validate(const RollOfDice _dice, const Color _color, const int _pos) const
 {
 	if (_color != Color::RED && _color != Color::YELLOW && _color != Color::GREEN && _color != Color::BLUE) {
 		return false;
@@ -43,7 +43,7 @@ bool QwixxScoreSheet::validate(RollOfDice _dice, Color _color, int _pos)
 	}
 }
 
-int QwixxScoreSheet::calcTotal()
+int QwixxScoreSheet::calcTotal() const
 {
 	int current_score = 0;
 	current_score -= d_failedThrows * 5;
@@ -68,7 +68,7 @@ int QwixxScoreSheet::calcTotal()
 	return current_score;
 }
 
-bool QwixxScoreSheet::operator!()
+bool QwixxScoreSheet::operator!() const
 {
 	//checking for common fail conditions (failed throws)
 	if (ScoreSheet::operator!())
@@ -78,7 +78,7 @@ bool QwixxScoreSheet::operator!()
     return (d_lockedRows >= 2);
 }
 
-Row& QwixxScoreSheet::operator[](Color _color)
+Row& QwixxScoreSheet::operator[](const Color _color)
 {
 	switch(_color)
 	{
@@ -118,7 +118,7 @@ bool QwixxScoreSheet::score(RollOfDice _playDice, Color _rowColor, int _val){
     return false;
 }
 
-std::vector<Color> QwixxScoreSheet::getUnlockedColorsVector(){
+std::vector<Color> QwixxScoreSheet::getUnlockedColorsVector() const {
     std::vector<Color> lr;
     for (auto row : d_scoreSheetRows){
         if (!row->getLockedStatus()){
