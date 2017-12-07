@@ -61,6 +61,7 @@ void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
             do {
                 std::cout << std::endl;
                 std::cout << "What row would like to play in?";
+                //TODO weird hanging behaviour here, likely stray cin.ignore();
                 Color color = get_color_index_vect(std::cin)[0];
                 std::cin.ignore(256, '\n');
                 
@@ -73,7 +74,7 @@ void QwixxPlayer::inputAfterRoll(RollOfDice& _roll)
                     count += d.d_face;
                 }
                 
-                
+                //TODO you can score colored dice anywhere you want... that's not good
                 
                 
                 index = 0; // TODO find a way to get the index from row given a color and a value

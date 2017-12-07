@@ -74,6 +74,7 @@ int main(int argc, char const *argv[])
     bool endCond = false;
 	while (!endCond) {
         
+        //TODO get main loop to circle back instead of restart for non active players
 		for(auto active_player : players)
 		{
 			RollOfDice current_roll = active_player->inputBeforeRoll(rd);

@@ -26,4 +26,6 @@ public:
 
     bool getEndCond(); //TODO: Remove relics of this;
 
+};
+
 #endif
