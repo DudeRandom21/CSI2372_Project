@@ -12,10 +12,11 @@ RollOfDice QwixxPlayer::inputBeforeRoll(RollOfDice& _roll)
     dice_colors.push_back(Color::WHITE_1);
     dice_colors.push_back(Color::WHITE_2);
     
+    // Getting available dice corresponding to unlocked rows
     std::vector<Color> tmp = d_ScoreSheet->getUnlockedColorsVector();
     for (auto c : tmp){
         dice_colors.push_back(c);
-    }   
+    }
     
     RollOfDice rd;
     for(auto color : dice_colors)
@@ -29,7 +30,6 @@ RollOfDice QwixxPlayer::inputBeforeRoll(RollOfDice& _roll)
     return rd;
 }
 
-//TODO if you have time combine these to have less duplicate code
 void QwixxPlayer::inputAfterRoll(const RollOfDice& _roll)
 {
     std::cout << std::endl << std::endl << std::endl;
@@ -40,7 +40,6 @@ void QwixxPlayer::inputAfterRoll(const RollOfDice& _roll)
     
     if(!d_active)
     {
-        int index;
         char answer;
         
         std::cout << std::endl;
@@ -56,7 +55,6 @@ void QwixxPlayer::inputAfterRoll(const RollOfDice& _roll)
             do {
                 std::cout << std::endl;
                 std::cout << "What row would like to play in?";
-                //TODO weird hanging behaviour here, likely stray cin.ignore();
                 Color color = get_color_index_vect(std::cin)[0];
                 std::cin.ignore(256, '\n');
                 
@@ -69,11 +67,7 @@ void QwixxPlayer::inputAfterRoll(const RollOfDice& _roll)
                     count += d.d_face;
                 }
                 
-                //TODO you can score colored dice anywhere you want... that's not good
-                
-                
-                index = 0; // TODO find a way to get the index from row given a color and a value
-                
+                //trying to score whites only
                 if(d_ScoreSheet->score(_roll, color, count)){
                     std::cout << _roll;
                     std::cout << *d_ScoreSheet;
@@ -90,10 +84,10 @@ void QwixxPlayer::inputAfterRoll(const RollOfDice& _roll)
         }
         
     }
-
+    
     else if (d_active)
     {
-
+        
         char answer;
         
         std::cout << std::endl;
@@ -153,43 +147,70 @@ void QwixxPlayer::inputAfterRoll(const RollOfDice& _roll)
         if(answer == 'n')
             scoreColored = false;
         
+        bool validMove = true;
         
-        
-        if(scoreColored){
-            Color color;
-            std::cout << std::endl;
-            std::cout << "What row would like to play in?" << std::endl;
-            color = get_color_index_vect(std::cin)[0];
+        do {
             
-            int num = -1;
-            std::cout << std::endl;
-            std::cout << "What number would you like to play?" << std::endl;
-            std::cin >> num;
-            std::cin.ignore(256, '\n');
-            
-            if(d_ScoreSheet->score(_roll, color, num)){
-                std::cout << std::endl << std::endl << std::endl;
-                std::cout << _roll;
-                std::cout << *d_ScoreSheet;
-                return;
-            }
-            else
-            {
+            if(scoreColored){
+                Color color;
                 std::cout << std::endl;
-                std::cout << "That is not a valid location please try another" << std::endl;
-                if(d_active)
+                std::cout << "What row would like to play in?" << std::endl;
+                
+                color = get_color_index_vect(std::cin)[0];
+                
+                int num = -1;
+                std::cout << std::endl;
+                std::cout << "What number would you like to play?" << std::endl;
+                std::cin >> num;
+                std::cin.ignore(256, '\n');
+                
+                
+                RollOfDice rd;
+                
+                bool flag = false;
+                int w_d = 0; //getting ready to store what the white dice should be
+                
+                for (auto d : _roll){
+                    if (d.d_color == color){
+                        rd.push_back(d);
+                        w_d = num - d.d_face; // setting expected white dice value
+                    }
+                }
+                
+                for (auto d : _roll){
+                    if ((d.d_color == Color::WHITE_1 || d.d_color == Color::WHITE_2) && !flag && d.d_face == w_d){
+                        rd.push_back(d);
+                        flag = true;
+                    }
+                }
+                
+                
+                //attempting to score
+                if(d_ScoreSheet->score(rd, color, num)){
+                    std::cout << std::endl << std::endl << std::endl;
+                    std::cout << _roll;
+                    std::cout << *d_ScoreSheet;
+                    return;
+                }
+                else
+                {
                     std::cout << std::endl;
-                    std::cout << "(last try before being marked as failed throw)" << std::endl;
+                    std::cout << "That is not a valid location please try another" << std::endl;
+                    if(d_active)
+                        std::cout << std::endl;
+                    validMove = false;
+                }
             }
-            
         }
+        while (!validMove);
         
-        if ( scoreWhite == false && scoreColored == false ){
-            d_ScoreSheet->addFailedThrow();
-        }
-        
-        d_active = false;
+    
+    if ( scoreWhite == false && scoreColored == false ){
+        d_ScoreSheet->addFailedThrow();
     }
+    
+    d_active = false;
+}
 }
 
 int QwixxPlayer::convert_to_index(const Color _color) const

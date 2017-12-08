@@ -42,6 +42,39 @@ QwixxRow<rowType, d_c>::QwixxRow()
 template <typename rowType, const Color d_c>
 bool QwixxRow<rowType, d_c>::validate(const int _index, const RollOfDice _roll)
 {
+    int val = (*this)[_index];
+    int count = 0;
+    
+    int op1 = 0;
+    int op2 = 0;
+    
+    for (auto d : _roll){
+        Color dieColor = d.d_color;
+        int d_val = d.d_face;
+        
+        
+        if (dieColor == Color::WHITE_1 || dieColor == WHITE_2){
+            count += d_val;
+        }
+        
+        if (dieColor == Color::WHITE_1){
+            op1 += d_val;
+        }
+        if (dieColor == Color::WHITE_2){
+            op2 += d_val;
+        }
+        
+        if (dieColor == d_c){
+            op1 += d_val;
+            op2 += d_val;
+        }
+        
+    }
+    
+    if(val != count && val != op1 && val != op2){
+        return false;
+    }
+                      
 
 	if (_index < 0 || _index > 10)
 		return false;
@@ -58,6 +91,8 @@ bool QwixxRow<rowType, d_c>::validate(const int _index, const RollOfDice _roll)
 	}
 	if (!found)
 		return false;
+    
+    
 
 	//checking if value is open for use
 	int playedBoxCount = 0;
